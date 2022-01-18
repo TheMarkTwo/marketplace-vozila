@@ -29,10 +29,10 @@ namespace MarketplaceVozila
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProfil));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlPodatci = new System.Windows.Forms.Panel();
             this.lblKontakt = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -63,7 +63,7 @@ namespace MarketplaceVozila
             this.pnlPodatci.Controls.Add(this.pboxProfilna);
             this.pnlPodatci.Location = new System.Drawing.Point(0, 0);
             this.pnlPodatci.Name = "pnlPodatci";
-            this.pnlPodatci.Size = new System.Drawing.Size(228, 451);
+            this.pnlPodatci.Size = new System.Drawing.Size(228, 488);
             this.pnlPodatci.TabIndex = 1;
             // 
             // lblKontakt
@@ -151,14 +151,14 @@ namespace MarketplaceVozila
             this.Slika,
             this.Opis,
             this.Cijena});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPrikazOglasa.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPrikazOglasa.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvPrikazOglasa.Location = new System.Drawing.Point(228, -1);
             this.dgvPrikazOglasa.MultiSelect = false;
             this.dgvPrikazOglasa.Name = "dgvPrikazOglasa";
@@ -184,8 +184,8 @@ namespace MarketplaceVozila
             // 
             // Slika
             // 
-            dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
-            this.Slika.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
+            this.Slika.DefaultCellStyle = dataGridViewCellStyle4;
             this.Slika.HeaderText = "Slika";
             this.Slika.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Slika.Name = "Slika";
@@ -203,10 +203,10 @@ namespace MarketplaceVozila
             // 
             // Cijena
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.Cijena.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            this.Cijena.DefaultCellStyle = dataGridViewCellStyle5;
             this.Cijena.HeaderText = "Cijena";
             this.Cijena.Name = "Cijena";
             this.Cijena.ReadOnly = true;
@@ -217,7 +217,7 @@ namespace MarketplaceVozila
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 487);
             this.Controls.Add(this.dgvPrikazOglasa);
             this.Controls.Add(this.pnlPodatci);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
