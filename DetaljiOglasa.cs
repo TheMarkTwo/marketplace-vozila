@@ -36,17 +36,8 @@ namespace MarketplaceVozila
 
         private void lblProdavac_Click(object sender, EventArgs e)
         {
-            int count = 0;
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Text == this.Text)
-                    count++;
-            }
-            if (count == 0)
-            {
-                frmProfil prof = new frmProfil(trenutniOglas.Prodavac);
-                prof.Show();
-            }
+            frmProfil prof = new frmProfil(trenutniOglas.Prodavac);
+            prof.Show();
         }
     }
 }

@@ -2,3 +2,4 @@ Automobil|16|Audi|A6 Avant|140|2|2016|184000|2.0TDI|Dizel|Automatski
 Traktor|18|Massey Ferguson|5465 Dyna 4|89|6.6|2008|0|7873
 Automobil|19|VW|Golf 7|110|2|2019|73000|2.0TDI|Dizel|Automatski
 Automobil|20|Porsche|Taycan|350|0|2021|6500|performance|Struja|Automatski
+Automobil|23|VW|Golf 2|60|1.6|1981|200000|1.6TDI|Dizel|Manualni
