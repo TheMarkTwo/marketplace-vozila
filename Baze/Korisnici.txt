@@ -1,0 +1,6 @@
+0|admin|admin|administrator|Marijana Cvetkovića 2|044538219|admin@marketplace.com
+10|matiaj|teglahrena|Matija Lovrekovic|Radiceva 134|0997728837|matiaj@gmail.com
+11|knezaaa|ivanko|Ivan Knezic|Naselje 15|091726937|shortcat@gmail.com
+12|Nikola0001|140273|Nikola Kovacevic|Ulica fra Sthepana Vrljica 4|0986372536|nkovacevic@yahoo.com
+13|Luksimus|lmatic|Luka Matic|Ulica Kraj 12|0958274637|lmatic@hotmail.com
+14|Petrica|petrica2000|Petra Juric|Ulica Frana Galovica 31|0917283746|petra.juric@gmail.com
