@@ -155,7 +155,7 @@ namespace MarketplaceVozila
 
         private void lblKorisnickoIme_Click(object sender, EventArgs e)
         {
-            frmProfil pro = new frmProfil(trenutniKorisnik);
+            frmProfil pro = new frmProfil(trenutniKorisnik, true);
             pro.ShowDialog();
         }
 
@@ -168,7 +168,7 @@ namespace MarketplaceVozila
         private void dgvPrikazOglasa_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Oglas oglas = Oglas.listaOglasa.Where(o => o.ID == int.Parse(dgvPrikazOglasa.Rows[e.RowIndex].Cells[0].Value.ToString())).ToList()[0];
-            frmDetaljiOglasa deog = new frmDetaljiOglasa(oglas);
+            frmDetaljiOglasa deog = new frmDetaljiOglasa(oglas, trenutniKorisnik);
             deog.Show();
         }
     }

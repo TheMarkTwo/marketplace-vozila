@@ -15,8 +15,10 @@ namespace MarketplaceVozila
     public partial class frmDetaljiOglasa : Form
     {
         Oglas trenutniOglas;
-        public frmDetaljiOglasa(Oglas oglas)
+        Korisnik trenutniKorisnik;
+        public frmDetaljiOglasa(Oglas oglas, Korisnik korisnik)
         {
+            trenutniKorisnik = korisnik;
             trenutniOglas = oglas;
             InitializeComponent();
         }
@@ -40,7 +42,14 @@ namespace MarketplaceVozila
 
         private void lblProdavac_Click(object sender, EventArgs e)
         {
-            frmProfil prof = new frmProfil(trenutniOglas.Prodavac);
+            bool vlastitiOglas;
+
+            if (trenutniKorisnik.ID == trenutniOglas.Prodavac.ID)
+                vlastitiOglas = true;
+            else
+                vlastitiOglas = false;
+
+            frmProfil prof = new frmProfil(trenutniOglas.Prodavac, vlastitiOglas);
             prof.Show();
         }
     }

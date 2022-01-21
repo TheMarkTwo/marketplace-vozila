@@ -13,8 +13,10 @@ namespace MarketplaceVozila
     {
         List<Oglas> korisniceviOglasi = new List<Oglas>();
         Korisnik trenutniKorisnik;
-        public frmProfil(Korisnik korisnik)
+        bool _vlastitiProfil;
+        public frmProfil(Korisnik korisnik, bool vlastitiProfil)
         {
+            _vlastitiProfil = vlastitiProfil;
             trenutniKorisnik = korisnik;
             InitializeComponent();
         }
@@ -24,19 +26,14 @@ namespace MarketplaceVozila
             //popunjavanje polja korisnickim podatcima
             this.Text = trenutniKorisnik.KorisnickoIme;
             string putanjaSlike = $"{PodatkovniKontekst.slikeKorisnika}{trenutniKorisnik.ID}.jpg";
-            //Image tempslika;
             if (File.Exists(putanjaSlike))
-            //{
-            //    using (Image slika = Image.FromFile(putanjaSlike))
-            //    {
-            //        tempslika = slika;   
-            //    }
-            //    pboxProfilna.Image = tempslika;
-            //} VELIKI ERROR
                 pboxProfilna.Image = Image.FromFile(putanjaSlike);
             else
                 pboxProfilna.Image = Image.FromFile(PodatkovniKontekst.tempProfilna);
             putanjaSlike = null;
+
+            if (!_vlastitiProfil)
+                pboxProfilna.Cursor = Cursors.Default;
 
             lblKorisnickoIme.Text = trenutniKorisnik.KorisnickoIme;
             lblPunoIme.Text = trenutniKorisnik.PunoIme;
@@ -63,31 +60,34 @@ namespace MarketplaceVozila
 
         private void pboxProfilna_Click(object sender, EventArgs e)
         {
-            string profilnaPath = PodatkovniKontekst.slikeKorisnika + trenutniKorisnik.ID + ".jpg";
-            //dodavanje profilne slike
-            //if (!File.Exists(profilnaPath)) // dodaj replace slike
-            //{
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            if (_vlastitiProfil)
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "JPG Files|*.jpg";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                string profilnaPath = PodatkovniKontekst.slikeKorisnika + trenutniKorisnik.ID + ".jpg";
+                //dodavanje profilne slike
+                //if (!File.Exists(profilnaPath)) // dodaj replace slike
+                //{
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    pboxProfilna.Image = null;
-                    if (File.Exists(profilnaPath))
-                        File.Delete(profilnaPath);
-                    string filePath = openFileDialog.FileName;
-                    File.Copy(filePath, profilnaPath); 
-                    pboxProfilna.Image = Image.FromFile(profilnaPath);
+                    openFileDialog.InitialDirectory = "c:\\";
+                    openFileDialog.Filter = "JPG Files|*.jpg";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        pboxProfilna.Image = null;
+                        if (File.Exists(profilnaPath))
+                            File.Delete(profilnaPath);
+                        string filePath = openFileDialog.FileName;
+                        File.Copy(filePath, profilnaPath);
+                        pboxProfilna.Image = Image.FromFile(profilnaPath);
+                    }
                 }
+                //}
             }
-            //}
         }
 
         private void dgvPrikazOglasa_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Oglas oglas = Oglas.listaOglasa.Where(o => o.ID == int.Parse(dgvPrikazOglasa.Rows[e.RowIndex].Cells[0].Value.ToString())).ToList()[0];
-            frmDetaljiOglasa deog = new frmDetaljiOglasa(oglas);
+            frmDetaljiOglasa deog = new frmDetaljiOglasa(oglas, trenutniKorisnik);
             deog.Show();
         }
     }
