@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,10 @@ namespace MarketplaceVozila
         private void frmDetaljiOglasa_Load(object sender, EventArgs e)
         {
             this.Text = "Oglas #" + trenutniOglas.ID;
-            pboxSlika.Image = Image.FromFile(PodatkovniKontekst.slikeOglasa + trenutniOglas.ID + ".jpg");
+            if (File.Exists(PodatkovniKontekst.slikeOglasa + trenutniOglas.ID + ".jpg"))
+                pboxSlika.Image = Image.FromFile(PodatkovniKontekst.slikeOglasa + trenutniOglas.ID + ".jpg");
+            else
+                pboxSlika.Image = Image.FromFile(PodatkovniKontekst.tempSlikaOglasa);
             lblNazivOglasa.Text = trenutniOglas.NazivOglasa;
             lblCijena.Text = trenutniOglas.Cijena.ToString("0,0") + "kn";
             lblProdavac.Text = trenutniOglas.Prodavac.ToString();

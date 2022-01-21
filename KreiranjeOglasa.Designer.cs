@@ -76,9 +76,9 @@ namespace MarketplaceVozila
             this.lblCijena.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblCijena.Location = new System.Drawing.Point(168, 291);
             this.lblCijena.Name = "lblCijena";
-            this.lblCijena.Size = new System.Drawing.Size(39, 13);
+            this.lblCijena.Size = new System.Drawing.Size(57, 13);
             this.lblCijena.TabIndex = 42;
-            this.lblCijena.Text = "Cijena:";
+            this.lblCijena.Text = "Cijena (kn)";
             // 
             // txtCijena
             // 
@@ -94,9 +94,9 @@ namespace MarketplaceVozila
             this.lblPrijedeniKilometri.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblPrijedeniKilometri.Location = new System.Drawing.Point(26, 461);
             this.lblPrijedeniKilometri.Name = "lblPrijedeniKilometri";
-            this.lblPrijedeniKilometri.Size = new System.Drawing.Size(92, 13);
+            this.lblPrijedeniKilometri.Size = new System.Drawing.Size(89, 13);
             this.lblPrijedeniKilometri.TabIndex = 39;
-            this.lblPrijedeniKilometri.Text = "Prijedeni Kilometri:";
+            this.lblPrijedeniKilometri.Text = "Prijedeni Kilometri";
             // 
             // txtPrijedeniKilometri
             // 
@@ -239,6 +239,7 @@ namespace MarketplaceVozila
             // 
             // txtOpis
             // 
+            this.txtOpis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOpis.Location = new System.Drawing.Point(331, 79);
             this.txtOpis.Multiline = true;
             this.txtOpis.Name = "txtOpis";
@@ -269,16 +270,17 @@ namespace MarketplaceVozila
             this.lblRadniObujam.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblRadniObujam.Location = new System.Drawing.Point(168, 252);
             this.lblRadniObujam.Name = "lblRadniObujam";
-            this.lblRadniObujam.Size = new System.Drawing.Size(72, 13);
+            this.lblRadniObujam.Size = new System.Drawing.Size(87, 13);
             this.lblRadniObujam.TabIndex = 52;
-            this.lblRadniObujam.Text = "Radni obujam";
+            this.lblRadniObujam.Text = "Radni obujam (L)";
             // 
             // txtNazivOglasa
             // 
+            this.txtNazivOglasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNazivOglasa.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtNazivOglasa.Location = new System.Drawing.Point(331, 33);
             this.txtNazivOglasa.Name = "txtNazivOglasa";
-            this.txtNazivOglasa.Size = new System.Drawing.Size(457, 20);
+            this.txtNazivOglasa.Size = new System.Drawing.Size(457, 22);
             this.txtNazivOglasa.TabIndex = 15;
             // 
             // lblNazivOglasa

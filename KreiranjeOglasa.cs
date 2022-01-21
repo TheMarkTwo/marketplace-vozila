@@ -86,103 +86,107 @@ namespace MarketplaceVozila
 
             if (nastavi)
             {
-                //Kreiranje vozila
-                string[] vrijednostiAtr = PodatkovniKontekst.DohvatiVrijednostiKontrola(pnlAtributi);
-                int ID = ++PodatkovniKontekst.IDs[0];
-                string kategorija = cmbKategorija.GetItemText(cmbKategorija.SelectedItem);
-                Vozilo vozilo = new Vozilo()
+                try
                 {
-                    Kategorija = kategorija,
-                    ID = ID,
-                    Marka = txtMarka.Text,
-                    Model = txtModel.Text,
-                    SnagaMotora = int.Parse(txtSnagaMotora.Text),
-                    RadniObujam = double.Parse(txtRadniObujam.Text),
-                    GodinaProizvodnje = int.Parse(txtGodinaPorizvodnje.Text),
-                    PrijedeniKilometri = double.Parse(txtPrijedeniKilometri.Text)
-                };
-                switch (kategorija)
-                {
-                    case "Automobil":
-                        Automobil a = new Automobil(vozilo)
-                        {
-                            TipAutomobila = vrijednostiAtr[0],
-                            Motor = vrijednostiAtr[1],
-                            Mjenjac = vrijednostiAtr[2]
-                        };
-                        Vozilo.listaVozila.Add(a);
-                        a.SpremiVozilo();
-                        break;
+                    //Kreiranje vozila
+                    string[] vrijednostiAtr = PodatkovniKontekst.DohvatiVrijednostiKontrola(pnlAtributi);
+                    int ID = ++PodatkovniKontekst.IDs[0];
+                    string kategorija = cmbKategorija.GetItemText(cmbKategorija.SelectedItem);
+                    Vozilo vozilo = new Vozilo()
+                    {
+                        Kategorija = kategorija,
+                        ID = ID,
+                        Marka = txtMarka.Text,
+                        Model = txtModel.Text,
+                        SnagaMotora = int.Parse(txtSnagaMotora.Text),
+                        RadniObujam = double.Parse(txtRadniObujam.Text),
+                        GodinaProizvodnje = int.Parse(txtGodinaPorizvodnje.Text),
+                        PrijedeniKilometri = double.Parse(txtPrijedeniKilometri.Text)
+                    };
 
-                    case "Motocikl":
-                        Motocikl m = new Motocikl(vozilo)
-                        {
-                            Vrsta = vrijednostiAtr[0],
-                            Motor = vrijednostiAtr[1]
-                        };
-                        Vozilo.listaVozila.Add(m);
-                        m.SpremiVozilo();
-                        break;
+                    double testParseCijena = double.Parse(txtCijena.Text);
 
-                    case "Kombi":
-                        Kombi ko = new Kombi(vozilo)
-                        {
-                            TipKombia = vrijednostiAtr[0],
-                            Motor = vrijednostiAtr[1],
-                            Mjenjac = vrijednostiAtr[2]
-                        };
-                        Vozilo.listaVozila.Add(ko);
-                        ko.SpremiVozilo();
-                        break;
+                    switch (kategorija)
+                    {
+                        case "Automobil":
+                            vozilo = new Automobil(vozilo)
+                            {
+                                TipAutomobila = vrijednostiAtr[0],
+                                Motor = vrijednostiAtr[1],
+                                Mjenjac = vrijednostiAtr[2]
+                            };
+                            break;
 
-                    case "Kamion":
-                        Kamion ka = new Kamion(vozilo)
-                        {
-                            TipKamiona = vrijednostiAtr[0],
-                            Motor = vrijednostiAtr[1],
-                            MaksimalnaNosivost = double.Parse(vrijednostiAtr[2])
-                        };
-                        Vozilo.listaVozila.Add(ka);
-                        ka.SpremiVozilo();
-                        break;
+                        case "Motocikl":
+                            vozilo = new Motocikl(vozilo)
+                            {
+                                Vrsta = vrijednostiAtr[0],
+                                Motor = vrijednostiAtr[1]
+                            };
+                            break;
 
-                    case "Traktor":
-                        Traktor t = new Traktor(vozilo)
-                        {
-                            RadniSati = int.Parse(vrijednostiAtr[0])
-                        };
-                        Vozilo.listaVozila.Add(t);
-                        t.SpremiVozilo();
-                        break;
+                        case "Kombi":
+                            vozilo = new Kombi(vozilo)
+                            {
+                                TipKombia = vrijednostiAtr[0],
+                                Motor = vrijednostiAtr[1],
+                                Mjenjac = vrijednostiAtr[2]
+                            };
+                            break;
 
-                    default:
-                        break;
+                        case "Kamion":
+                            vozilo = new Kamion(vozilo)
+                            {
+                                TipKamiona = vrijednostiAtr[0],
+                                Motor = vrijednostiAtr[1],
+                                MaksimalnaNosivost = double.Parse(vrijednostiAtr[2])
+                            };
+                            break;
+
+                        case "Traktor":
+                            vozilo = new Traktor(vozilo)
+                            {
+                                RadniSati = int.Parse(vrijednostiAtr[0])
+                            };
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    Vozilo.listaVozila.Add(vozilo);
+                    vozilo.SpremiVozilo();
+
+                    //Kreiranje oglasa
+                    Oglas oglas = new Oglas()
+                    {
+                        ID = ID,
+                        VoziloZaProdaju = Vozilo.listaVozila.Where(v => v.ID == ID).ToList()[0],
+                        Prodavac = trenutniKorisnik,
+                        NazivOglasa = txtNazivOglasa.Text,
+                        Cijena = testParseCijena,
+                        Lokacija = cmbLokacija.GetItemText(cmbLokacija.SelectedItem),
+                        Opis = txtOpis.Text.Replace(Environment.NewLine, @" \n ")
+                    };
+
+                    Oglas.listaOglasa.Add(oglas);
+                    oglas.SpremiOglas();
+
+                    if (!string.IsNullOrEmpty(filePath))
+                    {
+                        string slikaPath = PodatkovniKontekst.slikeOglasa + oglas.ID + ".jpg";
+                        File.Copy(filePath, slikaPath);
+                        pboxSlika.Image = Image.FromFile(slikaPath);
+                    }
+
+                    DialogResult d = MessageBox.Show("Oglas je kreiran", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (d == DialogResult.OK)
+                        this.Close();
                 }
-
-                //Kreiranje oglasa
-                Oglas oglas = new Oglas()
+                catch (FormatException)
                 {
-                    ID = ID,
-                    VoziloZaProdaju = Vozilo.listaVozila.Where(v => v.ID == ID).ToList()[0],
-                    Prodavac = trenutniKorisnik,
-                    NazivOglasa = txtNazivOglasa.Text,
-                    Cijena = double.Parse(txtCijena.Text),
-                    Lokacija = cmbLokacija.GetItemText(cmbLokacija.SelectedItem),
-                    Opis = txtOpis.Text.Replace(Environment.NewLine, @" \n ")
-                };
-                Oglas.listaOglasa.Add(oglas);
-                oglas.SpremiOglas();
-
-                if (!string.IsNullOrEmpty(filePath))
-                {
-                    string slikaPath = PodatkovniKontekst.slikeOglasa + oglas.ID + ".jpg";
-                    File.Copy(filePath, slikaPath);
-                    pboxSlika.Image = Image.FromFile(slikaPath);
+                    MessageBox.Show("Unesen je krivi format brojcanih vrijednosti", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
-                DialogResult d = MessageBox.Show("Oglas je kreiran", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (d == DialogResult.OK)
-                    this.Close();
             }
         }
     }
