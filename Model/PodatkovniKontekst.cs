@@ -39,6 +39,7 @@ namespace MarketplaceVozila.Model
             "Medimurska",
             "Grad Zagreb"
         };
+        public static readonly string[] sortiranjePo = { "Nazivu", "Najevcoj kilometrazi", "Najmanjoj kilometrazi", "Najevcoj cijeni", "Najmanjoj cijeni" };
 
         static readonly string bazaIDa = @"..\..\Baze\IDs.txt";
         public static int[] IDs;

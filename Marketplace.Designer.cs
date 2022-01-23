@@ -35,10 +35,6 @@ namespace MarketplaceVozila
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMarketplace));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPrikazOglasa = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Slika = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbKategorija = new System.Windows.Forms.ComboBox();
             this.cmbMarka = new System.Windows.Forms.ComboBox();
             this.txtSnagaMotoraOd = new System.Windows.Forms.TextBox();
@@ -70,13 +66,19 @@ namespace MarketplaceVozila
             this.lblLokacija = new System.Windows.Forms.Label();
             this.cmbLokacija = new System.Windows.Forms.ComboBox();
             this.pnlOpcije = new System.Windows.Forms.Panel();
+            this.cmbSortiranje = new System.Windows.Forms.ComboBox();
+            this.lblSortiraj = new System.Windows.Forms.Label();
             this.btnOdjava = new System.Windows.Forms.Button();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
-            this.btnObrisiOglas = new System.Windows.Forms.Button();
-            this.btnUrediOglas = new System.Windows.Forms.Button();
             this.btnKreirajOglas = new System.Windows.Forms.Button();
             this.btnOcistiPretragu = new System.Windows.Forms.Button();
             this.pnlBG = new System.Windows.Forms.Panel();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Slika = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kilometraza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RawCijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikazOglasa)).BeginInit();
             this.pnlOpcije.SuspendLayout();
             this.SuspendLayout();
@@ -102,7 +104,9 @@ namespace MarketplaceVozila
             this.ID,
             this.Slika,
             this.Opis,
-            this.Cijena});
+            this.Cijena,
+            this.Kilometraza,
+            this.RawCijena});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Menu;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -124,47 +128,8 @@ namespace MarketplaceVozila
             this.dgvPrikazOglasa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPrikazOglasa.Size = new System.Drawing.Size(822, 720);
             this.dgvPrikazOglasa.TabIndex = 0;
-            this.dgvPrikazOglasa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrikazOglasa_CellContentClick);
             this.dgvPrikazOglasa.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrikazOglasa_CellContentDoubleClick);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ID.Visible = false;
-            // 
-            // Slika
-            // 
-            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
-            this.Slika.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Slika.HeaderText = "Slika";
-            this.Slika.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Slika.Name = "Slika";
-            this.Slika.ReadOnly = true;
-            this.Slika.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Slika.Width = 225;
-            // 
-            // Opis
-            // 
-            this.Opis.HeaderText = "Opis";
-            this.Opis.Name = "Opis";
-            this.Opis.ReadOnly = true;
-            this.Opis.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Opis.Width = 375;
-            // 
-            // Cijena
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.Cijena.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Cijena.HeaderText = "Cijena";
-            this.Cijena.Name = "Cijena";
-            this.Cijena.ReadOnly = true;
-            this.Cijena.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Cijena.Width = 200;
+            this.dgvPrikazOglasa.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvPrikazOglasa_SortCompare);
             // 
             // cmbKategorija
             // 
@@ -484,16 +449,39 @@ namespace MarketplaceVozila
             // pnlOpcije
             // 
             this.pnlOpcije.BackColor = System.Drawing.Color.White;
+            this.pnlOpcije.Controls.Add(this.cmbSortiranje);
+            this.pnlOpcije.Controls.Add(this.lblSortiraj);
             this.pnlOpcije.Controls.Add(this.btnOdjava);
             this.pnlOpcije.Controls.Add(this.lblKorisnickoIme);
-            this.pnlOpcije.Controls.Add(this.btnObrisiOglas);
-            this.pnlOpcije.Controls.Add(this.btnUrediOglas);
             this.pnlOpcije.Controls.Add(this.btnKreirajOglas);
             this.pnlOpcije.ForeColor = System.Drawing.SystemColors.ControlText;
             this.pnlOpcije.Location = new System.Drawing.Point(1044, 0);
             this.pnlOpcije.Name = "pnlOpcije";
             this.pnlOpcije.Size = new System.Drawing.Size(245, 717);
             this.pnlOpcije.TabIndex = 31;
+            // 
+            // cmbSortiranje
+            // 
+            this.cmbSortiranje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSortiranje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSortiranje.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cmbSortiranje.FormattingEnabled = true;
+            this.cmbSortiranje.Location = new System.Drawing.Point(28, 76);
+            this.cmbSortiranje.Name = "cmbSortiranje";
+            this.cmbSortiranje.Size = new System.Drawing.Size(195, 24);
+            this.cmbSortiranje.TabIndex = 34;
+            this.cmbSortiranje.SelectedIndexChanged += new System.EventHandler(this.cmbSortiranje_SelectedIndexChanged);
+            // 
+            // lblSortiraj
+            // 
+            this.lblSortiraj.AutoSize = true;
+            this.lblSortiraj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSortiraj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSortiraj.Location = new System.Drawing.Point(28, 57);
+            this.lblSortiraj.Name = "lblSortiraj";
+            this.lblSortiraj.Size = new System.Drawing.Size(69, 16);
+            this.lblSortiraj.TabIndex = 8;
+            this.lblSortiraj.Text = "Sortiraj po";
             // 
             // btnOdjava
             // 
@@ -519,32 +507,12 @@ namespace MarketplaceVozila
             this.lblKorisnickoIme.UseMnemonic = false;
             this.lblKorisnickoIme.Click += new System.EventHandler(this.lblKorisnickoIme_Click);
             // 
-            // btnObrisiOglas
-            // 
-            this.btnObrisiOglas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnObrisiOglas.Location = new System.Drawing.Point(28, 670);
-            this.btnObrisiOglas.Name = "btnObrisiOglas";
-            this.btnObrisiOglas.Size = new System.Drawing.Size(195, 31);
-            this.btnObrisiOglas.TabIndex = 2;
-            this.btnObrisiOglas.Text = "Obrisi oglas";
-            this.btnObrisiOglas.UseVisualStyleBackColor = true;
-            // 
-            // btnUrediOglas
-            // 
-            this.btnUrediOglas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUrediOglas.Location = new System.Drawing.Point(28, 633);
-            this.btnUrediOglas.Name = "btnUrediOglas";
-            this.btnUrediOglas.Size = new System.Drawing.Size(195, 31);
-            this.btnUrediOglas.TabIndex = 1;
-            this.btnUrediOglas.Text = "Uredi oglas";
-            this.btnUrediOglas.UseVisualStyleBackColor = true;
-            // 
             // btnKreirajOglas
             // 
             this.btnKreirajOglas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKreirajOglas.Location = new System.Drawing.Point(28, 596);
+            this.btnKreirajOglas.Location = new System.Drawing.Point(28, 665);
             this.btnKreirajOglas.Name = "btnKreirajOglas";
-            this.btnKreirajOglas.Size = new System.Drawing.Size(195, 31);
+            this.btnKreirajOglas.Size = new System.Drawing.Size(195, 40);
             this.btnKreirajOglas.TabIndex = 0;
             this.btnKreirajOglas.Text = "Kreiraj oglas";
             this.btnKreirajOglas.UseVisualStyleBackColor = true;
@@ -568,6 +536,59 @@ namespace MarketplaceVozila
             this.pnlBG.Name = "pnlBG";
             this.pnlBG.Size = new System.Drawing.Size(10, 717);
             this.pnlBG.TabIndex = 33;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ID.Visible = false;
+            // 
+            // Slika
+            // 
+            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
+            this.Slika.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Slika.HeaderText = "Slika";
+            this.Slika.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Slika.Name = "Slika";
+            this.Slika.ReadOnly = true;
+            this.Slika.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Slika.Width = 225;
+            // 
+            // Opis
+            // 
+            this.Opis.HeaderText = "Opis";
+            this.Opis.Name = "Opis";
+            this.Opis.ReadOnly = true;
+            this.Opis.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Opis.Width = 375;
+            // 
+            // Cijena
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.Cijena.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cijena.HeaderText = "Cijena";
+            this.Cijena.Name = "Cijena";
+            this.Cijena.ReadOnly = true;
+            this.Cijena.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Cijena.Width = 200;
+            // 
+            // Kilometraza
+            // 
+            this.Kilometraza.HeaderText = "Kilometraza";
+            this.Kilometraza.Name = "Kilometraza";
+            this.Kilometraza.ReadOnly = true;
+            this.Kilometraza.Visible = false;
+            // 
+            // RawCijena
+            // 
+            this.RawCijena.HeaderText = "RawCijena";
+            this.RawCijena.Name = "RawCijena";
+            this.RawCijena.ReadOnly = true;
+            this.RawCijena.Visible = false;
             // 
             // frmMarketplace
             // 
@@ -619,6 +640,7 @@ namespace MarketplaceVozila
             this.Load += new System.EventHandler(this.frmMarketplace_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikazOglasa)).EndInit();
             this.pnlOpcije.ResumeLayout(false);
+            this.pnlOpcije.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -659,16 +681,18 @@ namespace MarketplaceVozila
         private System.Windows.Forms.ComboBox cmbLokacija;
         private System.Windows.Forms.Panel pnlOpcije;
         private System.Windows.Forms.Button btnKreirajOglas;
-        private System.Windows.Forms.Button btnUrediOglas;
-        private System.Windows.Forms.Button btnObrisiOglas;
         private System.Windows.Forms.Label lblKorisnickoIme;
         private System.Windows.Forms.Button btnOdjava;
         private System.Windows.Forms.Button btnOcistiPretragu;
+        private System.Windows.Forms.Panel pnlBG;
+        private System.Windows.Forms.ComboBox cmbSortiranje;
+        private System.Windows.Forms.Label lblSortiraj;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewImageColumn Slika;
         private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cijena;
-        private System.Windows.Forms.Panel pnlBG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kilometraza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RawCijena;
     }
 }
 

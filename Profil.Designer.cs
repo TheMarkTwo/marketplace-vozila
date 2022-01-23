@@ -29,10 +29,10 @@ namespace MarketplaceVozila
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProfil));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlPodatci = new System.Windows.Forms.Panel();
             this.lblKontakt = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -46,6 +46,9 @@ namespace MarketplaceVozila
             this.Slika = new System.Windows.Forms.DataGridViewImageColumn();
             this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnObrisiOglas = new System.Windows.Forms.Button();
+            this.btnUrediOglas = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlPodatci.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxProfilna)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikazOglasa)).BeginInit();
@@ -63,13 +66,13 @@ namespace MarketplaceVozila
             this.pnlPodatci.Controls.Add(this.pboxProfilna);
             this.pnlPodatci.Location = new System.Drawing.Point(0, 0);
             this.pnlPodatci.Name = "pnlPodatci";
-            this.pnlPodatci.Size = new System.Drawing.Size(228, 488);
+            this.pnlPodatci.Size = new System.Drawing.Size(228, 497);
             this.pnlPodatci.TabIndex = 1;
             // 
             // lblKontakt
             // 
             this.lblKontakt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKontakt.Location = new System.Drawing.Point(13, 336);
+            this.lblKontakt.Location = new System.Drawing.Point(13, 373);
             this.lblKontakt.Name = "lblKontakt";
             this.lblKontakt.Size = new System.Drawing.Size(200, 20);
             this.lblKontakt.TabIndex = 6;
@@ -79,7 +82,7 @@ namespace MarketplaceVozila
             // lblEmail
             // 
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(12, 383);
+            this.lblEmail.Location = new System.Drawing.Point(12, 420);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(200, 20);
             this.lblEmail.TabIndex = 5;
@@ -89,7 +92,7 @@ namespace MarketplaceVozila
             // lblTelefon
             // 
             this.lblTelefon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefon.Location = new System.Drawing.Point(12, 360);
+            this.lblTelefon.Location = new System.Drawing.Point(12, 397);
             this.lblTelefon.Name = "lblTelefon";
             this.lblTelefon.Size = new System.Drawing.Size(200, 20);
             this.lblTelefon.TabIndex = 4;
@@ -99,7 +102,7 @@ namespace MarketplaceVozila
             // lblAdresa
             // 
             this.lblAdresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdresa.Location = new System.Drawing.Point(12, 290);
+            this.lblAdresa.Location = new System.Drawing.Point(12, 311);
             this.lblAdresa.Name = "lblAdresa";
             this.lblAdresa.Size = new System.Drawing.Size(200, 20);
             this.lblAdresa.TabIndex = 3;
@@ -109,7 +112,7 @@ namespace MarketplaceVozila
             // lblPunoIme
             // 
             this.lblPunoIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPunoIme.Location = new System.Drawing.Point(12, 266);
+            this.lblPunoIme.Location = new System.Drawing.Point(12, 287);
             this.lblPunoIme.Name = "lblPunoIme";
             this.lblPunoIme.Size = new System.Drawing.Size(200, 20);
             this.lblPunoIme.TabIndex = 2;
@@ -119,7 +122,7 @@ namespace MarketplaceVozila
             // lblKorisnickoIme
             // 
             this.lblKorisnickoIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKorisnickoIme.Location = new System.Drawing.Point(12, 226);
+            this.lblKorisnickoIme.Location = new System.Drawing.Point(13, 228);
             this.lblKorisnickoIme.Name = "lblKorisnickoIme";
             this.lblKorisnickoIme.Size = new System.Drawing.Size(200, 25);
             this.lblKorisnickoIme.TabIndex = 1;
@@ -151,14 +154,14 @@ namespace MarketplaceVozila
             this.Slika,
             this.Opis,
             this.Cijena});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPrikazOglasa.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPrikazOglasa.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPrikazOglasa.Location = new System.Drawing.Point(228, -1);
             this.dgvPrikazOglasa.MultiSelect = false;
             this.dgvPrikazOglasa.Name = "dgvPrikazOglasa";
@@ -184,8 +187,8 @@ namespace MarketplaceVozila
             // 
             // Slika
             // 
-            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
-            this.Slika.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
+            this.Slika.DefaultCellStyle = dataGridViewCellStyle1;
             this.Slika.HeaderText = "Slika";
             this.Slika.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Slika.Name = "Slika";
@@ -203,21 +206,54 @@ namespace MarketplaceVozila
             // 
             // Cijena
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            this.Cijena.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.Cijena.DefaultCellStyle = dataGridViewCellStyle2;
             this.Cijena.HeaderText = "Cijena";
             this.Cijena.Name = "Cijena";
             this.Cijena.ReadOnly = true;
             this.Cijena.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Cijena.Width = 125;
             // 
+            // btnObrisiOglas
+            // 
+            this.btnObrisiOglas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObrisiOglas.Location = new System.Drawing.Point(617, 457);
+            this.btnObrisiOglas.Name = "btnObrisiOglas";
+            this.btnObrisiOglas.Size = new System.Drawing.Size(180, 40);
+            this.btnObrisiOglas.TabIndex = 8;
+            this.btnObrisiOglas.Text = "Obrisi oglas";
+            this.btnObrisiOglas.UseVisualStyleBackColor = true;
+            // 
+            // btnUrediOglas
+            // 
+            this.btnUrediOglas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUrediOglas.Location = new System.Drawing.Point(431, 457);
+            this.btnUrediOglas.Name = "btnUrediOglas";
+            this.btnUrediOglas.Size = new System.Drawing.Size(180, 40);
+            this.btnUrediOglas.TabIndex = 7;
+            this.btnUrediOglas.Text = "Uredi oglas";
+            this.btnUrediOglas.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(230, 457);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(195, 40);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Uredi korisnicke podatke";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // frmProfil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 487);
+            this.ClientSize = new System.Drawing.Size(800, 503);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnObrisiOglas);
+            this.Controls.Add(this.btnUrediOglas);
             this.Controls.Add(this.dgvPrikazOglasa);
             this.Controls.Add(this.pnlPodatci);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -249,5 +285,8 @@ namespace MarketplaceVozila
         private System.Windows.Forms.DataGridViewImageColumn Slika;
         private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cijena;
+        private System.Windows.Forms.Button btnObrisiOglas;
+        private System.Windows.Forms.Button btnUrediOglas;
+        private System.Windows.Forms.Button button1;
     }
 }

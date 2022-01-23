@@ -18,6 +18,8 @@ namespace MarketplaceVozila
         List<string> listaMarki = new List<string>();
         List<string> listaModela = new List<string>();
 
+        List<Oglas> listaPretrazenihOglasa = null;
+
         public frmMarketplace(Korisnik korisnik)
         {
             trenutniKorisnik = korisnik;
@@ -28,6 +30,7 @@ namespace MarketplaceVozila
         {
             cmbKategorija.SelectedIndex = -1;
             cmbLokacija.SelectedIndex = -1;
+            cmbSortiranje.SelectedIndex = -1;
             cmbMarka.Enabled = false;
             cmbMarka.SelectedIndex = -1;
             cmbModel.Enabled = false;
@@ -39,6 +42,7 @@ namespace MarketplaceVozila
         {
             cmbKategorija.DataSource = PodatkovniKontekst.listaKategorija;
             cmbLokacija.DataSource = PodatkovniKontekst.popisLokacija;
+            cmbSortiranje.DataSource = PodatkovniKontekst.sortiranjePo;
             OcistiPretragu();
             lblKorisnickoIme.Text = trenutniKorisnik.KorisnickoIme;
         }
@@ -84,8 +88,6 @@ namespace MarketplaceVozila
         private void btn_Pretraga_Click(object sender, EventArgs e)
         {
             //Filtriranje po unesenim podacima
-            List<Oglas> listaPretrazenihOglasa = null;
-
             if (cmbKategorija.GetItemText(cmbKategorija.SelectedItem) != "")
                 listaPretrazenihOglasa = Oglas.listaOglasa.Where(o => o.VoziloZaProdaju.Kategorija == cmbKategorija.GetItemText(cmbKategorija.SelectedItem)).ToList();
             if (cmbMarka.GetItemText(cmbMarka.SelectedItem) != "")
@@ -105,29 +107,11 @@ namespace MarketplaceVozila
                     else
                         slika = Image.FromFile(PodatkovniKontekst.tempSlikaOglasa);
                     
-                    dgvPrikazOglasa.Rows.Add(oglas.ID, slika, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija}", $"{oglas.Cijena:0,0}kn");
+                    dgvPrikazOglasa.Rows.Add(oglas.ID, slika, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija} \n Prijedeni kilometri: {oglas.VoziloZaProdaju.PrijedeniKilometri.ToString("0,0") + "km"}", $"{oglas.Cijena:0,0}kn", oglas.VoziloZaProdaju.PrijedeniKilometri, oglas.Cijena);
                 }
             }
             if (dgvPrikazOglasa.SelectedRows.Count > 0)
                 dgvPrikazOglasa.CurrentRow.Selected = false;
-        }
-
-        private void dgvPrikazOglasa_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int idOglasa = int.Parse(dgvPrikazOglasa.Rows[e.RowIndex].Cells[0].Value.ToString());
-            foreach (Oglas oglas in Oglas.listaOglasa)
-            {
-                if (oglas.ID == idOglasa && oglas.Prodavac.ID == trenutniKorisnik.ID)
-                {
-                    btnUrediOglas.Enabled = true;
-                    btnObrisiOglas.Enabled = true;
-                }
-                else
-                {
-                    btnUrediOglas.Enabled = false;
-                    btnObrisiOglas.Enabled = false;
-                }
-            }
         }
 
         private void btnOcistiPretragu_Click(object sender, EventArgs e)
@@ -170,6 +154,30 @@ namespace MarketplaceVozila
             Oglas oglas = Oglas.listaOglasa.Where(o => o.ID == int.Parse(dgvPrikazOglasa.Rows[e.RowIndex].Cells[0].Value.ToString())).ToList()[0];
             frmDetaljiOglasa deog = new frmDetaljiOglasa(oglas, trenutniKorisnik);
             deog.Show();
+        }
+
+        private void cmbSortiranje_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string sortirajPo = cmbSortiranje.GetItemText(cmbSortiranje.SelectedItem);
+            if (sortirajPo == "Nazivu") 
+                dgvPrikazOglasa.Sort(dgvPrikazOglasa.Columns["Opis"], ListSortDirection.Ascending);
+            else if (sortirajPo == "Najevcoj kilometrazi")
+                dgvPrikazOglasa.Sort(dgvPrikazOglasa.Columns["Kilometraza"], ListSortDirection.Descending);
+            else if (sortirajPo == "Najmanjoj kilometrazi")
+                dgvPrikazOglasa.Sort(dgvPrikazOglasa.Columns["Kilometraza"], ListSortDirection.Ascending);
+            else if (sortirajPo == "Najevcoj cijeni")
+                dgvPrikazOglasa.Sort(dgvPrikazOglasa.Columns["RawCijena"], ListSortDirection.Descending);
+            else if (sortirajPo == "Najmanjoj cijeni")
+                dgvPrikazOglasa.Sort(dgvPrikazOglasa.Columns["RawCijena"], ListSortDirection.Ascending);
+        }
+
+        private void dgvPrikazOglasa_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            if (e.Column.Index == 4 || e.Column.Index == 5)
+            {
+                e.SortResult = double.Parse(e.CellValue1.ToString()).CompareTo(double.Parse(e.CellValue2.ToString()));
+                e.Handled = true;
+            }
         }
     }
 }
