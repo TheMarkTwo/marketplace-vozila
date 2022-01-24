@@ -201,6 +201,7 @@ namespace MarketplaceVozila
             // 
             // btnPrijava
             // 
+            this.btnPrijava.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrijava.Location = new System.Drawing.Point(134, 382);
             this.btnPrijava.Name = "btnPrijava";
             this.btnPrijava.Size = new System.Drawing.Size(113, 23);
@@ -211,6 +212,7 @@ namespace MarketplaceVozila
             // 
             // btnRegistracija
             // 
+            this.btnRegistracija.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegistracija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistracija.Location = new System.Drawing.Point(19, 339);
             this.btnRegistracija.Name = "btnRegistracija";

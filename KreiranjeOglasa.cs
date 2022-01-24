@@ -59,7 +59,7 @@ namespace MarketplaceVozila
                 if (control is TextBox)
                     control.Text = "";
             }
-            PodatkovniKontekst.DinamicneKontroleVozila(pnlAtributi, odabranaKategorija);
+            PodatkovniKontekst.DinamicneKontroleVozila(pnlAtributi, odabranaKategorija, new Size(142, 21));
         }
 
         private void btnKreiraj_Click(object sender, EventArgs e)

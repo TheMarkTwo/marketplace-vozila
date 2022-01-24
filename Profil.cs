@@ -41,6 +41,14 @@ namespace MarketplaceVozila
             lblTelefon.Text = trenutniKorisnik.Broj;
             lblEmail.Text = trenutniKorisnik.Email;
 
+            //kontroliranje opcijama vezane za vlastiti profil i oglase
+            if (!_vlastitiProfil)
+            {
+                pnlKontrole.Enabled = false;
+                pnlKontrole.Visible = false;
+                this.Size = new Size(816, 486);
+            }
+
             //popunjavanje DataGridView-a sa korisnicevim oglasima
             korisniceviOglasi = Oglas.listaOglasa.Where(oglas => oglas.Prodavac.ID == trenutniKorisnik.ID).ToList();
             if (korisniceviOglasi.Count != 0)

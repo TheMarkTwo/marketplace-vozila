@@ -80,21 +80,24 @@ namespace MarketplaceVozila.Model
             Oglas.DohvatiOglase();
         }
 
-        public static void DinamicneKontroleVozila(Panel panel, string odabranaKategorija)
+        public static void DinamicneKontroleVozila(Panel panel, string odabranaKategorija, Size velicinaKontrole)
         {
-            Size velicina = new Size(194, 21);
+            // Size(194, 21); pretraga
+            // Size(142, 21); kreiranje
+
+            Size velicina = velicinaKontrole;
             panel.Controls.Clear();
             // Tip
             Label lblTip = new Label() { Text = "Tip:", Location = new Point(-3, 0) };
-            TextBox txtTip = new TextBox() { Width = 121, Location = new Point(0, 15), Size = velicina };
+            TextBox txtTip = new TextBox() { Width = 121, Location = new Point(0, 16), Size = velicina };
 
             // Motor
             Label lblMotor = new Label() { Text = "Motor:", Location = new Point(-3, 40) };
-            ComboBox cmbMotor = new ComboBox() { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(0, 55), Size = velicina };
+            ComboBox cmbMotor = new ComboBox() { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(0, 56), Size = velicina };
 
             // Mjenjac
             Label lblMjenjac = new Label() { Text = "Mjenjac:", Location = new Point(-3, 80) };
-            ComboBox cmbMjenjac = new ComboBox() { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(0, 95), Size = velicina };
+            ComboBox cmbMjenjac = new ComboBox() { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(0, 96), Size = velicina };
             // Dinamicko kreiranje kontrola
             if (odabranaKategorija == "Automobil" || odabranaKategorija == "Kombi")
             {
@@ -113,7 +116,7 @@ namespace MarketplaceVozila.Model
             {
                 // Vrsta
                 Label lblVrsta = new Label() { Text = "Vrsta:", Location = new Point(-3, 0) };
-                ComboBox cmbVrsta = new ComboBox() { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(0, 15), Size = velicina };
+                ComboBox cmbVrsta = new ComboBox() { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(0, 16), Size = velicina };
                 cmbVrsta.Items.AddRange(PodatkovniKontekst.vrsteMotocikala);
                 panel.Controls.Add(cmbVrsta);
                 panel.Controls.Add(lblVrsta);
@@ -133,14 +136,14 @@ namespace MarketplaceVozila.Model
 
                 // Maksimalna nosivost
                 Label lblMaksNosivost = new Label() { Text = "Nosivost:", Location = new Point(-3, 80) };
-                TextBox txtMaksNosivost = new TextBox() { Width = 121, Location = new Point(0, 95), Size = velicina };
+                TextBox txtMaksNosivost = new TextBox() { Width = 121, Location = new Point(0, 96), Size = velicina };
                 panel.Controls.Add(txtMaksNosivost);
                 panel.Controls.Add(lblMaksNosivost);
             }
             else if (odabranaKategorija == "Traktor")
             {
                 Label lblRadniSati = new Label() { Text = "Radni sati:", Location = new Point(-3, 0) };
-                TextBox txtRadniSati = new TextBox() { Width = 121, Location = new Point(0, 15), Size = velicina };
+                TextBox txtRadniSati = new TextBox() { Width = 121, Location = new Point(0, 16), Size = velicina };
                 panel.Controls.Add(txtRadniSati);
                 panel.Controls.Add(lblRadniSati);
             }

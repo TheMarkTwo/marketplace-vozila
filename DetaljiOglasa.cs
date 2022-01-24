@@ -34,7 +34,7 @@ namespace MarketplaceVozila
             lblCijena.Text = trenutniOglas.Cijena.ToString("0,0") + "kn";
             lblProdavac.Text = trenutniOglas.Prodavac.ToString();
 
-            lblAutomobil.Text = trenutniOglas.VoziloZaProdaju.ToString() + $" ({trenutniOglas.VoziloZaProdaju.RadniObujam.ToString("0.0")}L)";
+            lblAutomobil.Text = trenutniOglas.VoziloZaProdaju.ToString() + $" ({trenutniOglas.VoziloZaProdaju.RadniObujam:0.0}L)";
             lblKilometraza.Text = trenutniOglas.VoziloZaProdaju.PrijedeniKilometri.ToString("0,0") + "km";
             lblGodina.Text = trenutniOglas.VoziloZaProdaju.GodinaProizvodnje + ". godina";
             txtOpis.Text = trenutniOglas.Opis.Replace(@" \n ", Environment.NewLine);

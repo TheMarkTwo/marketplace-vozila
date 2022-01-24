@@ -35,6 +35,12 @@ namespace MarketplaceVozila
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMarketplace));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPrikazOglasa = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Slika = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kilometraza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RawCijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbKategorija = new System.Windows.Forms.ComboBox();
             this.cmbMarka = new System.Windows.Forms.ComboBox();
             this.txtSnagaMotoraOd = new System.Windows.Forms.TextBox();
@@ -54,7 +60,7 @@ namespace MarketplaceVozila
             this.lblGodinaProizvodnje = new System.Windows.Forms.Label();
             this.txtGodinaPorizvodnjeOd = new System.Windows.Forms.TextBox();
             this.lblDo2 = new System.Windows.Forms.Label();
-            this.kilometri = new System.Windows.Forms.TextBox();
+            this.txtPrijedeniKilometriDo = new System.Windows.Forms.TextBox();
             this.lblOd2 = new System.Windows.Forms.Label();
             this.lblPrijedeniKilometri = new System.Windows.Forms.Label();
             this.txtPrijedeniKilometriOd = new System.Windows.Forms.TextBox();
@@ -62,7 +68,7 @@ namespace MarketplaceVozila
             this.txtCijenaDo = new System.Windows.Forms.TextBox();
             this.lblOd3 = new System.Windows.Forms.Label();
             this.lblCijena = new System.Windows.Forms.Label();
-            this.txtCijenaiOd = new System.Windows.Forms.TextBox();
+            this.txtCijenaOd = new System.Windows.Forms.TextBox();
             this.lblLokacija = new System.Windows.Forms.Label();
             this.cmbLokacija = new System.Windows.Forms.ComboBox();
             this.pnlOpcije = new System.Windows.Forms.Panel();
@@ -73,14 +79,9 @@ namespace MarketplaceVozila
             this.btnKreirajOglas = new System.Windows.Forms.Button();
             this.btnOcistiPretragu = new System.Windows.Forms.Button();
             this.pnlBG = new System.Windows.Forms.Panel();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Slika = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Kilometraza = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RawCijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikazOglasa)).BeginInit();
             this.pnlOpcije.SuspendLayout();
+            this.pnlBG.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPrikazOglasa
@@ -111,7 +112,7 @@ namespace MarketplaceVozila
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Menu;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Firebrick;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvPrikazOglasa.DefaultCellStyle = dataGridViewCellStyle4;
@@ -130,412 +131,6 @@ namespace MarketplaceVozila
             this.dgvPrikazOglasa.TabIndex = 0;
             this.dgvPrikazOglasa.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrikazOglasa_CellContentDoubleClick);
             this.dgvPrikazOglasa.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvPrikazOglasa_SortCompare);
-            // 
-            // cmbKategorija
-            // 
-            this.cmbKategorija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbKategorija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbKategorija.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cmbKategorija.FormattingEnabled = true;
-            this.cmbKategorija.Location = new System.Drawing.Point(21, 30);
-            this.cmbKategorija.Name = "cmbKategorija";
-            this.cmbKategorija.Size = new System.Drawing.Size(195, 24);
-            this.cmbKategorija.TabIndex = 2;
-            this.cmbKategorija.SelectedIndexChanged += new System.EventHandler(this.cmbKategorija_SelectedIndexChanged);
-            // 
-            // cmbMarka
-            // 
-            this.cmbMarka.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMarka.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMarka.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cmbMarka.FormattingEnabled = true;
-            this.cmbMarka.Location = new System.Drawing.Point(21, 76);
-            this.cmbMarka.Name = "cmbMarka";
-            this.cmbMarka.Size = new System.Drawing.Size(195, 24);
-            this.cmbMarka.TabIndex = 4;
-            this.cmbMarka.SelectedIndexChanged += new System.EventHandler(this.cmbMarka_SelectedIndexChanged);
-            // 
-            // txtSnagaMotoraOd
-            // 
-            this.txtSnagaMotoraOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSnagaMotoraOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtSnagaMotoraOd.Location = new System.Drawing.Point(50, 175);
-            this.txtSnagaMotoraOd.Name = "txtSnagaMotoraOd";
-            this.txtSnagaMotoraOd.Size = new System.Drawing.Size(65, 22);
-            this.txtSnagaMotoraOd.TabIndex = 8;
-            // 
-            // lblKategorija
-            // 
-            this.lblKategorija.AutoSize = true;
-            this.lblKategorija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKategorija.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblKategorija.Location = new System.Drawing.Point(18, 11);
-            this.lblKategorija.Name = "lblKategorija";
-            this.lblKategorija.Size = new System.Drawing.Size(69, 16);
-            this.lblKategorija.TabIndex = 1;
-            this.lblKategorija.Text = "Kategorija";
-            // 
-            // lblMarka
-            // 
-            this.lblMarka.AutoSize = true;
-            this.lblMarka.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarka.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMarka.Location = new System.Drawing.Point(18, 57);
-            this.lblMarka.Name = "lblMarka";
-            this.lblMarka.Size = new System.Drawing.Size(46, 16);
-            this.lblMarka.TabIndex = 3;
-            this.lblMarka.Text = "Marka";
-            // 
-            // lblModel
-            // 
-            this.lblModel.AutoSize = true;
-            this.lblModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblModel.Location = new System.Drawing.Point(18, 103);
-            this.lblModel.Name = "lblModel";
-            this.lblModel.Size = new System.Drawing.Size(46, 16);
-            this.lblModel.TabIndex = 5;
-            this.lblModel.Text = "Model";
-            // 
-            // cmbModel
-            // 
-            this.cmbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbModel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cmbModel.FormattingEnabled = true;
-            this.cmbModel.Location = new System.Drawing.Point(21, 122);
-            this.cmbModel.Name = "cmbModel";
-            this.cmbModel.Size = new System.Drawing.Size(195, 24);
-            this.cmbModel.TabIndex = 6;
-            // 
-            // lblSnagaMotora
-            // 
-            this.lblSnagaMotora.AutoSize = true;
-            this.lblSnagaMotora.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSnagaMotora.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSnagaMotora.Location = new System.Drawing.Point(18, 155);
-            this.lblSnagaMotora.Name = "lblSnagaMotora";
-            this.lblSnagaMotora.Size = new System.Drawing.Size(124, 16);
-            this.lblSnagaMotora.TabIndex = 7;
-            this.lblSnagaMotora.Text = "Snaga Motora (kW)";
-            // 
-            // pnlAtributi
-            // 
-            this.pnlAtributi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlAtributi.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pnlAtributi.Location = new System.Drawing.Point(21, 410);
-            this.pnlAtributi.Name = "pnlAtributi";
-            this.pnlAtributi.Size = new System.Drawing.Size(194, 164);
-            this.pnlAtributi.TabIndex = 9;
-            // 
-            // btn_Pretraga
-            // 
-            this.btn_Pretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Pretraga.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_Pretraga.Location = new System.Drawing.Point(21, 665);
-            this.btn_Pretraga.Name = "btn_Pretraga";
-            this.btn_Pretraga.Size = new System.Drawing.Size(195, 40);
-            this.btn_Pretraga.TabIndex = 10;
-            this.btn_Pretraga.Text = "Pretrazi";
-            this.btn_Pretraga.UseVisualStyleBackColor = true;
-            this.btn_Pretraga.Click += new System.EventHandler(this.btn_Pretraga_Click);
-            // 
-            // lblOd
-            // 
-            this.lblOd.AutoSize = true;
-            this.lblOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblOd.Location = new System.Drawing.Point(19, 178);
-            this.lblOd.Name = "lblOd";
-            this.lblOd.Size = new System.Drawing.Size(29, 16);
-            this.lblOd.TabIndex = 11;
-            this.lblOd.Text = "Od:";
-            // 
-            // lblDo
-            // 
-            this.lblDo.AutoSize = true;
-            this.lblDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDo.Location = new System.Drawing.Point(120, 178);
-            this.lblDo.Name = "lblDo";
-            this.lblDo.Size = new System.Drawing.Size(29, 16);
-            this.lblDo.TabIndex = 13;
-            this.lblDo.Text = "Do:";
-            // 
-            // txtSnagaMotoraDo
-            // 
-            this.txtSnagaMotoraDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSnagaMotoraDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtSnagaMotoraDo.Location = new System.Drawing.Point(150, 175);
-            this.txtSnagaMotoraDo.Name = "txtSnagaMotoraDo";
-            this.txtSnagaMotoraDo.Size = new System.Drawing.Size(65, 22);
-            this.txtSnagaMotoraDo.TabIndex = 12;
-            // 
-            // lblDo1
-            // 
-            this.lblDo1.AutoSize = true;
-            this.lblDo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDo1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDo1.Location = new System.Drawing.Point(120, 229);
-            this.lblDo1.Name = "lblDo1";
-            this.lblDo1.Size = new System.Drawing.Size(29, 16);
-            this.lblDo1.TabIndex = 18;
-            this.lblDo1.Text = "Do:";
-            // 
-            // txtGodinaPorizvodnjeDo
-            // 
-            this.txtGodinaPorizvodnjeDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGodinaPorizvodnjeDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtGodinaPorizvodnjeDo.Location = new System.Drawing.Point(150, 226);
-            this.txtGodinaPorizvodnjeDo.Name = "txtGodinaPorizvodnjeDo";
-            this.txtGodinaPorizvodnjeDo.Size = new System.Drawing.Size(65, 22);
-            this.txtGodinaPorizvodnjeDo.TabIndex = 17;
-            // 
-            // lblOd1
-            // 
-            this.lblOd1.AutoSize = true;
-            this.lblOd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOd1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblOd1.Location = new System.Drawing.Point(19, 229);
-            this.lblOd1.Name = "lblOd1";
-            this.lblOd1.Size = new System.Drawing.Size(29, 16);
-            this.lblOd1.TabIndex = 16;
-            this.lblOd1.Text = "Od:";
-            // 
-            // lblGodinaProizvodnje
-            // 
-            this.lblGodinaProizvodnje.AutoSize = true;
-            this.lblGodinaProizvodnje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGodinaProizvodnje.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblGodinaProizvodnje.Location = new System.Drawing.Point(17, 207);
-            this.lblGodinaProizvodnje.Name = "lblGodinaProizvodnje";
-            this.lblGodinaProizvodnje.Size = new System.Drawing.Size(125, 16);
-            this.lblGodinaProizvodnje.TabIndex = 14;
-            this.lblGodinaProizvodnje.Text = "Godina proizvodnje";
-            // 
-            // txtGodinaPorizvodnjeOd
-            // 
-            this.txtGodinaPorizvodnjeOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGodinaPorizvodnjeOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtGodinaPorizvodnjeOd.Location = new System.Drawing.Point(50, 226);
-            this.txtGodinaPorizvodnjeOd.Name = "txtGodinaPorizvodnjeOd";
-            this.txtGodinaPorizvodnjeOd.Size = new System.Drawing.Size(65, 22);
-            this.txtGodinaPorizvodnjeOd.TabIndex = 15;
-            // 
-            // lblDo2
-            // 
-            this.lblDo2.AutoSize = true;
-            this.lblDo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDo2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDo2.Location = new System.Drawing.Point(120, 281);
-            this.lblDo2.Name = "lblDo2";
-            this.lblDo2.Size = new System.Drawing.Size(29, 16);
-            this.lblDo2.TabIndex = 23;
-            this.lblDo2.Text = "Do:";
-            // 
-            // kilometri
-            // 
-            this.kilometri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kilometri.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.kilometri.Location = new System.Drawing.Point(150, 278);
-            this.kilometri.Name = "kilometri";
-            this.kilometri.Size = new System.Drawing.Size(65, 22);
-            this.kilometri.TabIndex = 22;
-            // 
-            // lblOd2
-            // 
-            this.lblOd2.AutoSize = true;
-            this.lblOd2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOd2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblOd2.Location = new System.Drawing.Point(19, 281);
-            this.lblOd2.Name = "lblOd2";
-            this.lblOd2.Size = new System.Drawing.Size(29, 16);
-            this.lblOd2.TabIndex = 21;
-            this.lblOd2.Text = "Od:";
-            // 
-            // lblPrijedeniKilometri
-            // 
-            this.lblPrijedeniKilometri.AutoSize = true;
-            this.lblPrijedeniKilometri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrijedeniKilometri.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPrijedeniKilometri.Location = new System.Drawing.Point(17, 259);
-            this.lblPrijedeniKilometri.Name = "lblPrijedeniKilometri";
-            this.lblPrijedeniKilometri.Size = new System.Drawing.Size(118, 16);
-            this.lblPrijedeniKilometri.TabIndex = 19;
-            this.lblPrijedeniKilometri.Text = "Prijedeni Kilometri:";
-            // 
-            // txtPrijedeniKilometriOd
-            // 
-            this.txtPrijedeniKilometriOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrijedeniKilometriOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtPrijedeniKilometriOd.Location = new System.Drawing.Point(50, 278);
-            this.txtPrijedeniKilometriOd.Name = "txtPrijedeniKilometriOd";
-            this.txtPrijedeniKilometriOd.Size = new System.Drawing.Size(65, 22);
-            this.txtPrijedeniKilometriOd.TabIndex = 20;
-            // 
-            // lblDo3
-            // 
-            this.lblDo3.AutoSize = true;
-            this.lblDo3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDo3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDo3.Location = new System.Drawing.Point(120, 332);
-            this.lblDo3.Name = "lblDo3";
-            this.lblDo3.Size = new System.Drawing.Size(29, 16);
-            this.lblDo3.TabIndex = 28;
-            this.lblDo3.Text = "Do:";
-            // 
-            // txtCijenaDo
-            // 
-            this.txtCijenaDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCijenaDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtCijenaDo.Location = new System.Drawing.Point(150, 329);
-            this.txtCijenaDo.Name = "txtCijenaDo";
-            this.txtCijenaDo.Size = new System.Drawing.Size(65, 22);
-            this.txtCijenaDo.TabIndex = 27;
-            // 
-            // lblOd3
-            // 
-            this.lblOd3.AutoSize = true;
-            this.lblOd3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOd3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblOd3.Location = new System.Drawing.Point(19, 332);
-            this.lblOd3.Name = "lblOd3";
-            this.lblOd3.Size = new System.Drawing.Size(29, 16);
-            this.lblOd3.TabIndex = 26;
-            this.lblOd3.Text = "Od:";
-            // 
-            // lblCijena
-            // 
-            this.lblCijena.AutoSize = true;
-            this.lblCijena.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCijena.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblCijena.Location = new System.Drawing.Point(17, 310);
-            this.lblCijena.Name = "lblCijena";
-            this.lblCijena.Size = new System.Drawing.Size(49, 16);
-            this.lblCijena.TabIndex = 24;
-            this.lblCijena.Text = "Cijena:";
-            // 
-            // txtCijenaiOd
-            // 
-            this.txtCijenaiOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCijenaiOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtCijenaiOd.Location = new System.Drawing.Point(50, 329);
-            this.txtCijenaiOd.Name = "txtCijenaiOd";
-            this.txtCijenaiOd.Size = new System.Drawing.Size(65, 22);
-            this.txtCijenaiOd.TabIndex = 25;
-            // 
-            // lblLokacija
-            // 
-            this.lblLokacija.AutoSize = true;
-            this.lblLokacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLokacija.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblLokacija.Location = new System.Drawing.Point(18, 360);
-            this.lblLokacija.Name = "lblLokacija";
-            this.lblLokacija.Size = new System.Drawing.Size(62, 16);
-            this.lblLokacija.TabIndex = 29;
-            this.lblLokacija.Text = "Lokacija:";
-            // 
-            // cmbLokacija
-            // 
-            this.cmbLokacija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLokacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbLokacija.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cmbLokacija.FormattingEnabled = true;
-            this.cmbLokacija.Location = new System.Drawing.Point(21, 379);
-            this.cmbLokacija.Name = "cmbLokacija";
-            this.cmbLokacija.Size = new System.Drawing.Size(195, 24);
-            this.cmbLokacija.TabIndex = 30;
-            // 
-            // pnlOpcije
-            // 
-            this.pnlOpcije.BackColor = System.Drawing.Color.White;
-            this.pnlOpcije.Controls.Add(this.cmbSortiranje);
-            this.pnlOpcije.Controls.Add(this.lblSortiraj);
-            this.pnlOpcije.Controls.Add(this.btnOdjava);
-            this.pnlOpcije.Controls.Add(this.lblKorisnickoIme);
-            this.pnlOpcije.Controls.Add(this.btnKreirajOglas);
-            this.pnlOpcije.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnlOpcije.Location = new System.Drawing.Point(1044, 0);
-            this.pnlOpcije.Name = "pnlOpcije";
-            this.pnlOpcije.Size = new System.Drawing.Size(245, 717);
-            this.pnlOpcije.TabIndex = 31;
-            // 
-            // cmbSortiranje
-            // 
-            this.cmbSortiranje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSortiranje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSortiranje.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cmbSortiranje.FormattingEnabled = true;
-            this.cmbSortiranje.Location = new System.Drawing.Point(28, 76);
-            this.cmbSortiranje.Name = "cmbSortiranje";
-            this.cmbSortiranje.Size = new System.Drawing.Size(195, 24);
-            this.cmbSortiranje.TabIndex = 34;
-            this.cmbSortiranje.SelectedIndexChanged += new System.EventHandler(this.cmbSortiranje_SelectedIndexChanged);
-            // 
-            // lblSortiraj
-            // 
-            this.lblSortiraj.AutoSize = true;
-            this.lblSortiraj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSortiraj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSortiraj.Location = new System.Drawing.Point(28, 57);
-            this.lblSortiraj.Name = "lblSortiraj";
-            this.lblSortiraj.Size = new System.Drawing.Size(69, 16);
-            this.lblSortiraj.TabIndex = 8;
-            this.lblSortiraj.Text = "Sortiraj po";
-            // 
-            // btnOdjava
-            // 
-            this.btnOdjava.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOdjava.Location = new System.Drawing.Point(180, 12);
-            this.btnOdjava.Name = "btnOdjava";
-            this.btnOdjava.Size = new System.Drawing.Size(54, 30);
-            this.btnOdjava.TabIndex = 4;
-            this.btnOdjava.Text = "Odjava";
-            this.btnOdjava.UseVisualStyleBackColor = true;
-            this.btnOdjava.Click += new System.EventHandler(this.btnOdjava_Click);
-            // 
-            // lblKorisnickoIme
-            // 
-            this.lblKorisnickoIme.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblKorisnickoIme.Font = new System.Drawing.Font("Milliard Medium", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKorisnickoIme.Location = new System.Drawing.Point(83, 12);
-            this.lblKorisnickoIme.Name = "lblKorisnickoIme";
-            this.lblKorisnickoIme.Size = new System.Drawing.Size(91, 30);
-            this.lblKorisnickoIme.TabIndex = 3;
-            this.lblKorisnickoIme.Text = "kime";
-            this.lblKorisnickoIme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblKorisnickoIme.UseMnemonic = false;
-            this.lblKorisnickoIme.Click += new System.EventHandler(this.lblKorisnickoIme_Click);
-            // 
-            // btnKreirajOglas
-            // 
-            this.btnKreirajOglas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKreirajOglas.Location = new System.Drawing.Point(28, 665);
-            this.btnKreirajOglas.Name = "btnKreirajOglas";
-            this.btnKreirajOglas.Size = new System.Drawing.Size(195, 40);
-            this.btnKreirajOglas.TabIndex = 0;
-            this.btnKreirajOglas.Text = "Kreiraj oglas";
-            this.btnKreirajOglas.UseVisualStyleBackColor = true;
-            this.btnKreirajOglas.Click += new System.EventHandler(this.btnKreirajOglas_Click);
-            // 
-            // btnOcistiPretragu
-            // 
-            this.btnOcistiPretragu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOcistiPretragu.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnOcistiPretragu.Location = new System.Drawing.Point(21, 619);
-            this.btnOcistiPretragu.Name = "btnOcistiPretragu";
-            this.btnOcistiPretragu.Size = new System.Drawing.Size(195, 40);
-            this.btnOcistiPretragu.TabIndex = 32;
-            this.btnOcistiPretragu.Text = "Ocisti pretragu";
-            this.btnOcistiPretragu.UseVisualStyleBackColor = true;
-            this.btnOcistiPretragu.Click += new System.EventHandler(this.btnOcistiPretragu_Click);
-            // 
-            // pnlBG
-            // 
-            this.pnlBG.Location = new System.Drawing.Point(235, 0);
-            this.pnlBG.Name = "pnlBG";
-            this.pnlBG.Size = new System.Drawing.Size(10, 717);
-            this.pnlBG.TabIndex = 33;
             // 
             // ID
             // 
@@ -590,6 +185,447 @@ namespace MarketplaceVozila
             this.RawCijena.ReadOnly = true;
             this.RawCijena.Visible = false;
             // 
+            // cmbKategorija
+            // 
+            this.cmbKategorija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbKategorija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbKategorija.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cmbKategorija.FormattingEnabled = true;
+            this.cmbKategorija.Location = new System.Drawing.Point(24, 33);
+            this.cmbKategorija.Name = "cmbKategorija";
+            this.cmbKategorija.Size = new System.Drawing.Size(195, 24);
+            this.cmbKategorija.TabIndex = 2;
+            this.cmbKategorija.SelectedIndexChanged += new System.EventHandler(this.cmbKategorija_SelectedIndexChanged);
+            // 
+            // cmbMarka
+            // 
+            this.cmbMarka.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMarka.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMarka.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cmbMarka.FormattingEnabled = true;
+            this.cmbMarka.Location = new System.Drawing.Point(24, 79);
+            this.cmbMarka.Name = "cmbMarka";
+            this.cmbMarka.Size = new System.Drawing.Size(195, 24);
+            this.cmbMarka.TabIndex = 4;
+            this.cmbMarka.SelectedIndexChanged += new System.EventHandler(this.cmbMarka_SelectedIndexChanged);
+            // 
+            // txtSnagaMotoraOd
+            // 
+            this.txtSnagaMotoraOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSnagaMotoraOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtSnagaMotoraOd.Location = new System.Drawing.Point(53, 178);
+            this.txtSnagaMotoraOd.Name = "txtSnagaMotoraOd";
+            this.txtSnagaMotoraOd.Size = new System.Drawing.Size(65, 22);
+            this.txtSnagaMotoraOd.TabIndex = 9;
+            // 
+            // lblKategorija
+            // 
+            this.lblKategorija.AutoSize = true;
+            this.lblKategorija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKategorija.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblKategorija.Location = new System.Drawing.Point(21, 14);
+            this.lblKategorija.Name = "lblKategorija";
+            this.lblKategorija.Size = new System.Drawing.Size(69, 16);
+            this.lblKategorija.TabIndex = 1;
+            this.lblKategorija.Text = "Kategorija";
+            // 
+            // lblMarka
+            // 
+            this.lblMarka.AutoSize = true;
+            this.lblMarka.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMarka.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblMarka.Location = new System.Drawing.Point(21, 60);
+            this.lblMarka.Name = "lblMarka";
+            this.lblMarka.Size = new System.Drawing.Size(46, 16);
+            this.lblMarka.TabIndex = 3;
+            this.lblMarka.Text = "Marka";
+            // 
+            // lblModel
+            // 
+            this.lblModel.AutoSize = true;
+            this.lblModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblModel.Location = new System.Drawing.Point(21, 106);
+            this.lblModel.Name = "lblModel";
+            this.lblModel.Size = new System.Drawing.Size(46, 16);
+            this.lblModel.TabIndex = 5;
+            this.lblModel.Text = "Model";
+            // 
+            // cmbModel
+            // 
+            this.cmbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbModel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cmbModel.FormattingEnabled = true;
+            this.cmbModel.Location = new System.Drawing.Point(24, 125);
+            this.cmbModel.Name = "cmbModel";
+            this.cmbModel.Size = new System.Drawing.Size(195, 24);
+            this.cmbModel.TabIndex = 6;
+            // 
+            // lblSnagaMotora
+            // 
+            this.lblSnagaMotora.AutoSize = true;
+            this.lblSnagaMotora.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSnagaMotora.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSnagaMotora.Location = new System.Drawing.Point(21, 158);
+            this.lblSnagaMotora.Name = "lblSnagaMotora";
+            this.lblSnagaMotora.Size = new System.Drawing.Size(124, 16);
+            this.lblSnagaMotora.TabIndex = 7;
+            this.lblSnagaMotora.Text = "Snaga Motora (kW)";
+            // 
+            // pnlAtributi
+            // 
+            this.pnlAtributi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlAtributi.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pnlAtributi.Location = new System.Drawing.Point(24, 409);
+            this.pnlAtributi.Name = "pnlAtributi";
+            this.pnlAtributi.Size = new System.Drawing.Size(194, 164);
+            this.pnlAtributi.TabIndex = 29;
+            // 
+            // btn_Pretraga
+            // 
+            this.btn_Pretraga.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Pretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Pretraga.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btn_Pretraga.Location = new System.Drawing.Point(24, 668);
+            this.btn_Pretraga.Name = "btn_Pretraga";
+            this.btn_Pretraga.Size = new System.Drawing.Size(195, 40);
+            this.btn_Pretraga.TabIndex = 41;
+            this.btn_Pretraga.Text = "Pretrazi";
+            this.btn_Pretraga.UseVisualStyleBackColor = true;
+            this.btn_Pretraga.Click += new System.EventHandler(this.btn_Pretraga_Click);
+            // 
+            // lblOd
+            // 
+            this.lblOd.AutoSize = true;
+            this.lblOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblOd.Location = new System.Drawing.Point(22, 181);
+            this.lblOd.Name = "lblOd";
+            this.lblOd.Size = new System.Drawing.Size(29, 16);
+            this.lblOd.TabIndex = 8;
+            this.lblOd.Text = "Od:";
+            // 
+            // lblDo
+            // 
+            this.lblDo.AutoSize = true;
+            this.lblDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDo.Location = new System.Drawing.Point(123, 181);
+            this.lblDo.Name = "lblDo";
+            this.lblDo.Size = new System.Drawing.Size(29, 16);
+            this.lblDo.TabIndex = 10;
+            this.lblDo.Text = "Do:";
+            // 
+            // txtSnagaMotoraDo
+            // 
+            this.txtSnagaMotoraDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSnagaMotoraDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtSnagaMotoraDo.Location = new System.Drawing.Point(153, 178);
+            this.txtSnagaMotoraDo.Name = "txtSnagaMotoraDo";
+            this.txtSnagaMotoraDo.Size = new System.Drawing.Size(65, 22);
+            this.txtSnagaMotoraDo.TabIndex = 11;
+            // 
+            // lblDo1
+            // 
+            this.lblDo1.AutoSize = true;
+            this.lblDo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDo1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDo1.Location = new System.Drawing.Point(123, 232);
+            this.lblDo1.Name = "lblDo1";
+            this.lblDo1.Size = new System.Drawing.Size(29, 16);
+            this.lblDo1.TabIndex = 15;
+            this.lblDo1.Text = "Do:";
+            // 
+            // txtGodinaPorizvodnjeDo
+            // 
+            this.txtGodinaPorizvodnjeDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGodinaPorizvodnjeDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtGodinaPorizvodnjeDo.Location = new System.Drawing.Point(153, 229);
+            this.txtGodinaPorizvodnjeDo.Name = "txtGodinaPorizvodnjeDo";
+            this.txtGodinaPorizvodnjeDo.Size = new System.Drawing.Size(65, 22);
+            this.txtGodinaPorizvodnjeDo.TabIndex = 16;
+            // 
+            // lblOd1
+            // 
+            this.lblOd1.AutoSize = true;
+            this.lblOd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOd1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblOd1.Location = new System.Drawing.Point(22, 232);
+            this.lblOd1.Name = "lblOd1";
+            this.lblOd1.Size = new System.Drawing.Size(29, 16);
+            this.lblOd1.TabIndex = 13;
+            this.lblOd1.Text = "Od:";
+            // 
+            // lblGodinaProizvodnje
+            // 
+            this.lblGodinaProizvodnje.AutoSize = true;
+            this.lblGodinaProizvodnje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGodinaProizvodnje.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblGodinaProizvodnje.Location = new System.Drawing.Point(20, 210);
+            this.lblGodinaProizvodnje.Name = "lblGodinaProizvodnje";
+            this.lblGodinaProizvodnje.Size = new System.Drawing.Size(125, 16);
+            this.lblGodinaProizvodnje.TabIndex = 12;
+            this.lblGodinaProizvodnje.Text = "Godina proizvodnje";
+            // 
+            // txtGodinaPorizvodnjeOd
+            // 
+            this.txtGodinaPorizvodnjeOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGodinaPorizvodnjeOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtGodinaPorizvodnjeOd.Location = new System.Drawing.Point(53, 229);
+            this.txtGodinaPorizvodnjeOd.Name = "txtGodinaPorizvodnjeOd";
+            this.txtGodinaPorizvodnjeOd.Size = new System.Drawing.Size(65, 22);
+            this.txtGodinaPorizvodnjeOd.TabIndex = 14;
+            // 
+            // lblDo2
+            // 
+            this.lblDo2.AutoSize = true;
+            this.lblDo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDo2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDo2.Location = new System.Drawing.Point(123, 284);
+            this.lblDo2.Name = "lblDo2";
+            this.lblDo2.Size = new System.Drawing.Size(29, 16);
+            this.lblDo2.TabIndex = 20;
+            this.lblDo2.Text = "Do:";
+            // 
+            // txtPrijedeniKilometriDo
+            // 
+            this.txtPrijedeniKilometriDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrijedeniKilometriDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtPrijedeniKilometriDo.Location = new System.Drawing.Point(153, 281);
+            this.txtPrijedeniKilometriDo.Name = "txtPrijedeniKilometriDo";
+            this.txtPrijedeniKilometriDo.Size = new System.Drawing.Size(65, 22);
+            this.txtPrijedeniKilometriDo.TabIndex = 21;
+            // 
+            // lblOd2
+            // 
+            this.lblOd2.AutoSize = true;
+            this.lblOd2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOd2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblOd2.Location = new System.Drawing.Point(22, 284);
+            this.lblOd2.Name = "lblOd2";
+            this.lblOd2.Size = new System.Drawing.Size(29, 16);
+            this.lblOd2.TabIndex = 18;
+            this.lblOd2.Text = "Od:";
+            // 
+            // lblPrijedeniKilometri
+            // 
+            this.lblPrijedeniKilometri.AutoSize = true;
+            this.lblPrijedeniKilometri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrijedeniKilometri.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblPrijedeniKilometri.Location = new System.Drawing.Point(20, 262);
+            this.lblPrijedeniKilometri.Name = "lblPrijedeniKilometri";
+            this.lblPrijedeniKilometri.Size = new System.Drawing.Size(115, 16);
+            this.lblPrijedeniKilometri.TabIndex = 17;
+            this.lblPrijedeniKilometri.Text = "Prijedeni Kilometri";
+            // 
+            // txtPrijedeniKilometriOd
+            // 
+            this.txtPrijedeniKilometriOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrijedeniKilometriOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtPrijedeniKilometriOd.Location = new System.Drawing.Point(53, 281);
+            this.txtPrijedeniKilometriOd.Name = "txtPrijedeniKilometriOd";
+            this.txtPrijedeniKilometriOd.Size = new System.Drawing.Size(65, 22);
+            this.txtPrijedeniKilometriOd.TabIndex = 19;
+            // 
+            // lblDo3
+            // 
+            this.lblDo3.AutoSize = true;
+            this.lblDo3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDo3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDo3.Location = new System.Drawing.Point(123, 335);
+            this.lblDo3.Name = "lblDo3";
+            this.lblDo3.Size = new System.Drawing.Size(29, 16);
+            this.lblDo3.TabIndex = 25;
+            this.lblDo3.Text = "Do:";
+            // 
+            // txtCijenaDo
+            // 
+            this.txtCijenaDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCijenaDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtCijenaDo.Location = new System.Drawing.Point(153, 332);
+            this.txtCijenaDo.Name = "txtCijenaDo";
+            this.txtCijenaDo.Size = new System.Drawing.Size(65, 22);
+            this.txtCijenaDo.TabIndex = 26;
+            // 
+            // lblOd3
+            // 
+            this.lblOd3.AutoSize = true;
+            this.lblOd3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOd3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblOd3.Location = new System.Drawing.Point(22, 335);
+            this.lblOd3.Name = "lblOd3";
+            this.lblOd3.Size = new System.Drawing.Size(29, 16);
+            this.lblOd3.TabIndex = 23;
+            this.lblOd3.Text = "Od:";
+            // 
+            // lblCijena
+            // 
+            this.lblCijena.AutoSize = true;
+            this.lblCijena.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCijena.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblCijena.Location = new System.Drawing.Point(20, 313);
+            this.lblCijena.Name = "lblCijena";
+            this.lblCijena.Size = new System.Drawing.Size(46, 16);
+            this.lblCijena.TabIndex = 22;
+            this.lblCijena.Text = "Cijena";
+            // 
+            // txtCijenaOd
+            // 
+            this.txtCijenaOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCijenaOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtCijenaOd.Location = new System.Drawing.Point(53, 332);
+            this.txtCijenaOd.Name = "txtCijenaOd";
+            this.txtCijenaOd.Size = new System.Drawing.Size(65, 22);
+            this.txtCijenaOd.TabIndex = 24;
+            // 
+            // lblLokacija
+            // 
+            this.lblLokacija.AutoSize = true;
+            this.lblLokacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLokacija.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblLokacija.Location = new System.Drawing.Point(21, 363);
+            this.lblLokacija.Name = "lblLokacija";
+            this.lblLokacija.Size = new System.Drawing.Size(59, 16);
+            this.lblLokacija.TabIndex = 27;
+            this.lblLokacija.Text = "Lokacija";
+            // 
+            // cmbLokacija
+            // 
+            this.cmbLokacija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLokacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLokacija.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cmbLokacija.FormattingEnabled = true;
+            this.cmbLokacija.Location = new System.Drawing.Point(24, 382);
+            this.cmbLokacija.Name = "cmbLokacija";
+            this.cmbLokacija.Size = new System.Drawing.Size(195, 24);
+            this.cmbLokacija.TabIndex = 28;
+            // 
+            // pnlOpcije
+            // 
+            this.pnlOpcije.BackColor = System.Drawing.Color.White;
+            this.pnlOpcije.Controls.Add(this.cmbSortiranje);
+            this.pnlOpcije.Controls.Add(this.lblSortiraj);
+            this.pnlOpcije.Controls.Add(this.btnOdjava);
+            this.pnlOpcije.Controls.Add(this.lblKorisnickoIme);
+            this.pnlOpcije.Controls.Add(this.btnKreirajOglas);
+            this.pnlOpcije.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnlOpcije.Location = new System.Drawing.Point(1044, 0);
+            this.pnlOpcije.Name = "pnlOpcije";
+            this.pnlOpcije.Size = new System.Drawing.Size(245, 717);
+            this.pnlOpcije.TabIndex = 31;
+            // 
+            // cmbSortiranje
+            // 
+            this.cmbSortiranje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSortiranje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSortiranje.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cmbSortiranje.FormattingEnabled = true;
+            this.cmbSortiranje.Location = new System.Drawing.Point(28, 76);
+            this.cmbSortiranje.Name = "cmbSortiranje";
+            this.cmbSortiranje.Size = new System.Drawing.Size(195, 24);
+            this.cmbSortiranje.TabIndex = 43;
+            this.cmbSortiranje.SelectedIndexChanged += new System.EventHandler(this.cmbSortiranje_SelectedIndexChanged);
+            // 
+            // lblSortiraj
+            // 
+            this.lblSortiraj.AutoSize = true;
+            this.lblSortiraj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSortiraj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSortiraj.Location = new System.Drawing.Point(28, 57);
+            this.lblSortiraj.Name = "lblSortiraj";
+            this.lblSortiraj.Size = new System.Drawing.Size(69, 16);
+            this.lblSortiraj.TabIndex = 42;
+            this.lblSortiraj.Text = "Sortiraj po";
+            // 
+            // btnOdjava
+            // 
+            this.btnOdjava.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOdjava.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOdjava.Location = new System.Drawing.Point(180, 12);
+            this.btnOdjava.Name = "btnOdjava";
+            this.btnOdjava.Size = new System.Drawing.Size(54, 30);
+            this.btnOdjava.TabIndex = 46;
+            this.btnOdjava.Text = "Odjava";
+            this.btnOdjava.UseVisualStyleBackColor = true;
+            this.btnOdjava.Click += new System.EventHandler(this.btnOdjava_Click);
+            // 
+            // lblKorisnickoIme
+            // 
+            this.lblKorisnickoIme.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblKorisnickoIme.Font = new System.Drawing.Font("Milliard Medium", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKorisnickoIme.Location = new System.Drawing.Point(83, 12);
+            this.lblKorisnickoIme.Name = "lblKorisnickoIme";
+            this.lblKorisnickoIme.Size = new System.Drawing.Size(91, 30);
+            this.lblKorisnickoIme.TabIndex = 45;
+            this.lblKorisnickoIme.Text = "kime";
+            this.lblKorisnickoIme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblKorisnickoIme.UseMnemonic = false;
+            this.lblKorisnickoIme.Click += new System.EventHandler(this.lblKorisnickoIme_Click);
+            // 
+            // btnKreirajOglas
+            // 
+            this.btnKreirajOglas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKreirajOglas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKreirajOglas.Location = new System.Drawing.Point(28, 665);
+            this.btnKreirajOglas.Name = "btnKreirajOglas";
+            this.btnKreirajOglas.Size = new System.Drawing.Size(195, 40);
+            this.btnKreirajOglas.TabIndex = 44;
+            this.btnKreirajOglas.Text = "Kreiraj oglas";
+            this.btnKreirajOglas.UseVisualStyleBackColor = true;
+            this.btnKreirajOglas.Click += new System.EventHandler(this.btnKreirajOglas_Click);
+            // 
+            // btnOcistiPretragu
+            // 
+            this.btnOcistiPretragu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOcistiPretragu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOcistiPretragu.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnOcistiPretragu.Location = new System.Drawing.Point(24, 622);
+            this.btnOcistiPretragu.Name = "btnOcistiPretragu";
+            this.btnOcistiPretragu.Size = new System.Drawing.Size(195, 40);
+            this.btnOcistiPretragu.TabIndex = 40;
+            this.btnOcistiPretragu.Text = "Ocisti pretragu";
+            this.btnOcistiPretragu.UseVisualStyleBackColor = true;
+            this.btnOcistiPretragu.Click += new System.EventHandler(this.btnOcistiPretragu_Click);
+            // 
+            // pnlBG
+            // 
+            this.pnlBG.Controls.Add(this.lblKategorija);
+            this.pnlBG.Controls.Add(this.btnOcistiPretragu);
+            this.pnlBG.Controls.Add(this.cmbMarka);
+            this.pnlBG.Controls.Add(this.txtSnagaMotoraOd);
+            this.pnlBG.Controls.Add(this.lblLokacija);
+            this.pnlBG.Controls.Add(this.lblMarka);
+            this.pnlBG.Controls.Add(this.cmbLokacija);
+            this.pnlBG.Controls.Add(this.cmbModel);
+            this.pnlBG.Controls.Add(this.lblDo3);
+            this.pnlBG.Controls.Add(this.lblModel);
+            this.pnlBG.Controls.Add(this.txtCijenaDo);
+            this.pnlBG.Controls.Add(this.lblSnagaMotora);
+            this.pnlBG.Controls.Add(this.lblOd3);
+            this.pnlBG.Controls.Add(this.cmbKategorija);
+            this.pnlBG.Controls.Add(this.lblCijena);
+            this.pnlBG.Controls.Add(this.pnlAtributi);
+            this.pnlBG.Controls.Add(this.txtCijenaOd);
+            this.pnlBG.Controls.Add(this.btn_Pretraga);
+            this.pnlBG.Controls.Add(this.lblDo2);
+            this.pnlBG.Controls.Add(this.lblOd);
+            this.pnlBG.Controls.Add(this.txtPrijedeniKilometriDo);
+            this.pnlBG.Controls.Add(this.txtSnagaMotoraDo);
+            this.pnlBG.Controls.Add(this.lblOd2);
+            this.pnlBG.Controls.Add(this.lblDo);
+            this.pnlBG.Controls.Add(this.lblPrijedeniKilometri);
+            this.pnlBG.Controls.Add(this.txtGodinaPorizvodnjeOd);
+            this.pnlBG.Controls.Add(this.txtPrijedeniKilometriOd);
+            this.pnlBG.Controls.Add(this.lblGodinaProizvodnje);
+            this.pnlBG.Controls.Add(this.lblDo1);
+            this.pnlBG.Controls.Add(this.lblOd1);
+            this.pnlBG.Controls.Add(this.txtGodinaPorizvodnjeDo);
+            this.pnlBG.Location = new System.Drawing.Point(-1, 0);
+            this.pnlBG.Name = "pnlBG";
+            this.pnlBG.Size = new System.Drawing.Size(246, 717);
+            this.pnlBG.TabIndex = 33;
+            // 
             // frmMarketplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -597,38 +633,7 @@ namespace MarketplaceVozila
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1288, 717);
             this.Controls.Add(this.pnlBG);
-            this.Controls.Add(this.btnOcistiPretragu);
             this.Controls.Add(this.pnlOpcije);
-            this.Controls.Add(this.lblLokacija);
-            this.Controls.Add(this.cmbLokacija);
-            this.Controls.Add(this.lblDo3);
-            this.Controls.Add(this.txtCijenaDo);
-            this.Controls.Add(this.lblOd3);
-            this.Controls.Add(this.lblCijena);
-            this.Controls.Add(this.txtCijenaiOd);
-            this.Controls.Add(this.lblDo2);
-            this.Controls.Add(this.kilometri);
-            this.Controls.Add(this.lblOd2);
-            this.Controls.Add(this.lblPrijedeniKilometri);
-            this.Controls.Add(this.txtPrijedeniKilometriOd);
-            this.Controls.Add(this.lblDo1);
-            this.Controls.Add(this.txtGodinaPorizvodnjeDo);
-            this.Controls.Add(this.lblOd1);
-            this.Controls.Add(this.lblGodinaProizvodnje);
-            this.Controls.Add(this.txtGodinaPorizvodnjeOd);
-            this.Controls.Add(this.lblDo);
-            this.Controls.Add(this.txtSnagaMotoraDo);
-            this.Controls.Add(this.lblOd);
-            this.Controls.Add(this.btn_Pretraga);
-            this.Controls.Add(this.pnlAtributi);
-            this.Controls.Add(this.cmbKategorija);
-            this.Controls.Add(this.lblSnagaMotora);
-            this.Controls.Add(this.lblModel);
-            this.Controls.Add(this.cmbModel);
-            this.Controls.Add(this.lblMarka);
-            this.Controls.Add(this.lblKategorija);
-            this.Controls.Add(this.txtSnagaMotoraOd);
-            this.Controls.Add(this.cmbMarka);
             this.Controls.Add(this.dgvPrikazOglasa);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -641,8 +646,9 @@ namespace MarketplaceVozila
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikazOglasa)).EndInit();
             this.pnlOpcije.ResumeLayout(false);
             this.pnlOpcije.PerformLayout();
+            this.pnlBG.ResumeLayout(false);
+            this.pnlBG.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -668,7 +674,7 @@ namespace MarketplaceVozila
         private System.Windows.Forms.Label lblGodinaProizvodnje;
         private System.Windows.Forms.TextBox txtGodinaPorizvodnjeOd;
         private System.Windows.Forms.Label lblDo2;
-        private System.Windows.Forms.TextBox kilometri;
+        private System.Windows.Forms.TextBox txtPrijedeniKilometriDo;
         private System.Windows.Forms.Label lblOd2;
         private System.Windows.Forms.Label lblPrijedeniKilometri;
         private System.Windows.Forms.TextBox txtPrijedeniKilometriOd;
@@ -676,7 +682,7 @@ namespace MarketplaceVozila
         private System.Windows.Forms.TextBox txtCijenaDo;
         private System.Windows.Forms.Label lblOd3;
         private System.Windows.Forms.Label lblCijena;
-        private System.Windows.Forms.TextBox txtCijenaiOd;
+        private System.Windows.Forms.TextBox txtCijenaOd;
         private System.Windows.Forms.Label lblLokacija;
         private System.Windows.Forms.ComboBox cmbLokacija;
         private System.Windows.Forms.Panel pnlOpcije;

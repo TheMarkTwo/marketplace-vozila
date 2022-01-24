@@ -54,10 +54,11 @@ namespace MarketplaceVozila
         // Azuriranje popisa marka, ovisno o odabranoj kategoriji vozila
         private void cmbKategorija_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string odabranaKategorija = cmbKategorija.GetItemText(cmbKategorija.SelectedItem);
+
             cmbMarka.DataSource = null;
             listaMarki.Clear();
             cmbMarka.Items.Clear();
-            string odabranaKategorija = cmbKategorija.GetItemText(cmbKategorija.SelectedItem);
             foreach (Vozilo v in Vozilo.listaVozila)
             {
                 if (odabranaKategorija == v.GetType().Name) 
@@ -69,16 +70,17 @@ namespace MarketplaceVozila
             cmbMarka.SelectedIndex = -1;
             if (cmbMarka.Items.Count <= 0) cmbMarka.Enabled = false; else cmbMarka.Enabled = true;
 
-            PodatkovniKontekst.DinamicneKontroleVozila(pnlAtributi, odabranaKategorija);
+            PodatkovniKontekst.DinamicneKontroleVozila(pnlAtributi, odabranaKategorija, new Size(194, 21));
         }
 
         // Azuriranje popisa modela, ovisno o odabranoj marci vozila
         private void cmbMarka_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string odabranaMarka = cmbMarka.GetItemText(cmbMarka.SelectedItem);
+
             cmbModel.DataSource = null;
             listaModela.Clear();
             cmbModel.Items.Clear();
-            string odabranaMarka = cmbMarka.GetItemText(cmbMarka.SelectedItem);
             foreach (Vozilo v in Vozilo.listaVozila)
             {
                 if (odabranaMarka == v.Marka) 
@@ -94,12 +96,66 @@ namespace MarketplaceVozila
         // Filtriranje po unesenim podacima
         private void btn_Pretraga_Click(object sender, EventArgs e)
         {
+            bool validno;
+            int intOd = 0; int intDo = 9999;
+            double doubleOd = 0; double doubleDo = 99999999;
+
             if (cmbKategorija.GetItemText(cmbKategorija.SelectedItem) != "")
                 listaPretrazenihOglasa = Oglas.listaOglasa.Where(o => o.VoziloZaProdaju.Kategorija == cmbKategorija.GetItemText(cmbKategorija.SelectedItem)).ToList();
             if (cmbMarka.GetItemText(cmbMarka.SelectedItem) != "")
                 listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => o.VoziloZaProdaju.Marka == cmbMarka.GetItemText(cmbMarka.SelectedItem)).ToList();
             if (cmbModel.GetItemText(cmbModel.SelectedItem) != "")
                 listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => o.VoziloZaProdaju.Model == cmbModel.GetItemText(cmbModel.SelectedItem)).ToList();
+
+            if (cmbKategorija.GetItemText(cmbKategorija.SelectedItem) != "")
+            {
+                if (txtSnagaMotoraOd.Text != "" || txtSnagaMotoraDo.Text != "")
+                {
+                    if (txtSnagaMotoraOd.Text != "")
+                        validno = int.TryParse(txtSnagaMotoraOd.Text, out intOd);
+                    if (txtSnagaMotoraDo.Text != "")
+                        validno = int.TryParse(txtSnagaMotoraDo.Text, out intDo);
+
+                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => intOd <= o.VoziloZaProdaju.SnagaMotora && o.VoziloZaProdaju.SnagaMotora <= intDo).ToList();
+                    intOd = 0; intDo = 9999;
+                }
+
+                if (txtGodinaPorizvodnjeOd.Text != "" || txtGodinaPorizvodnjeDo.Text != "")
+                {
+                    if (txtGodinaPorizvodnjeOd.Text != "")
+                        validno = int.TryParse(txtGodinaPorizvodnjeOd.Text, out intOd);
+                    if (txtGodinaPorizvodnjeDo.Text != "")
+                        validno = int.TryParse(txtGodinaPorizvodnjeDo.Text, out intDo);
+
+                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => intOd <= o.VoziloZaProdaju.GodinaProizvodnje && o.VoziloZaProdaju.GodinaProizvodnje <= intDo).ToList();
+                    intOd = 0; intDo = 9999;
+                }
+
+                if (txtPrijedeniKilometriOd.Text != "" || txtPrijedeniKilometriDo.Text != "")
+                {
+                    if (txtPrijedeniKilometriOd.Text != "")
+                        validno = double.TryParse(txtPrijedeniKilometriOd.Text, out doubleOd);
+                    if (txtPrijedeniKilometriDo.Text != "")
+                        validno = double.TryParse(txtPrijedeniKilometriDo.Text, out doubleDo);
+
+                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => doubleOd <= o.VoziloZaProdaju.PrijedeniKilometri && o.VoziloZaProdaju.PrijedeniKilometri <= doubleDo).ToList();
+                    doubleOd = 0; doubleDo = 9999999;
+                }
+
+                if (txtCijenaOd.Text != "" || txtCijenaDo.Text != "")
+                {
+                    if (txtCijenaOd.Text != "")
+                        validno = double.TryParse(txtCijenaOd.Text, out doubleOd);
+                    if (txtCijenaDo.Text != "")
+                        validno = double.TryParse(txtCijenaDo.Text, out doubleDo);
+
+                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => doubleOd <= o.Cijena && o.Cijena <= doubleDo).ToList();
+                    doubleOd = 0; doubleDo = 9999999;
+                }
+            }
+
+            if (cmbLokacija.GetItemText(cmbLokacija.SelectedItem) != "")
+                listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => o.Lokacija == cmbLokacija.GetItemText(cmbLokacija.SelectedItem)).ToList();
 
             //Ispisivanje oglasa u DataGridView
             dgvPrikazOglasa.Rows.Clear();
@@ -185,6 +241,7 @@ namespace MarketplaceVozila
         {
             frmKreiranjeOglasa krog = new frmKreiranjeOglasa(trenutniKorisnik);
             krog.ShowDialog();
+            OcistiPretragu();
         }
 
         private void dgvPrikazOglasa_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
