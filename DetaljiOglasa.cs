@@ -26,10 +26,17 @@ namespace MarketplaceVozila
         private void frmDetaljiOglasa_Load(object sender, EventArgs e)
         {
             this.Text = "Oglas #" + trenutniOglas.ID;
-            if (File.Exists(PodatkovniKontekst.slikeOglasa + trenutniOglas.ID + ".jpg"))
-                pboxSlika.Image = Image.FromFile(PodatkovniKontekst.slikeOglasa + trenutniOglas.ID + ".jpg");
-            else
-                pboxSlika.Image = Image.FromFile(PodatkovniKontekst.tempSlikaOglasa);
+
+            byte[] imgBytes;
+            Image img;
+            if (trenutniOglas.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
+            else imgBytes = Convert.FromBase64String(trenutniOglas.Slika);
+            using (MemoryStream ms = new MemoryStream(imgBytes))
+            {
+                img = Image.FromStream(ms);
+            }
+            pboxSlika.Image = img;
+
             lblNazivOglasa.Text = trenutniOglas.NazivOglasa;
             lblCijena.Text = trenutniOglas.Cijena.ToString("0,0") + "kn";
             lblProdavac.Text = trenutniOglas.Prodavac.ToString();
@@ -51,6 +58,24 @@ namespace MarketplaceVozila
 
             frmProfil prof = new frmProfil(trenutniOglas.Prodavac, vlastitiOglas);
             prof.Show();
+        }
+
+        private void pboxSlika_Click(object sender, EventArgs e)
+        {
+            byte[] imgBytes;
+            Image img;
+            string base64Img = PodatkovniKontekst.GetImageBase64();
+            if (base64Img != "")
+            {
+                trenutniOglas.Slika = base64Img;
+                imgBytes = Convert.FromBase64String(base64Img);
+                using (MemoryStream ms = new MemoryStream(imgBytes))
+                {
+                    img = Image.FromStream(ms);
+                }
+                pboxSlika.Image = img;
+                trenutniOglas.AzurirajOglas();
+            }
         }
     }
 }

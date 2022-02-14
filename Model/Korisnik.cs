@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarketplaceVozila.Model
 {
@@ -16,6 +12,7 @@ namespace MarketplaceVozila.Model
         public string Adresa { get; set; }
         public string Broj { get; set; }
         public string Email { get; set; }
+        public string Slika { get; set; }
 
         public static List<Korisnik> listaKorisnika = new List<Korisnik>();
 
@@ -23,9 +20,20 @@ namespace MarketplaceVozila.Model
         {
             using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaKorisnika, true))
             {
-                writer.WriteLine($"{this.ID}|{this.KorisnickoIme}|{this.Lozinka}|{this.PunoIme}|{this.Adresa}|{this.Broj}|{this.Email}");
+                writer.WriteLine($"{ID}|{KorisnickoIme}|{Lozinka}|{PunoIme}|{Adresa}|{Broj}|{Email}|{Slika}");
             }
             PodatkovniKontekst.AzurirajID();
+        }
+
+        public void AzurirajKorisnika()
+        {
+            using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaKorisnika))
+            {
+                foreach (Korisnik k in listaKorisnika)
+                {
+                    writer.WriteLine($"{k.ID}|{k.KorisnickoIme}|{k.Lozinka}|{k.PunoIme}|{k.Adresa}|{k.Broj}|{k.Email}|{k.Slika}");
+                }
+            }
         }
 
         public static void DohvatiKorisike()
@@ -46,7 +54,8 @@ namespace MarketplaceVozila.Model
                         PunoIme = devided[3],
                         Adresa = devided[4],
                         Broj = devided[5],
-                        Email = devided[6]
+                        Email = devided[6],
+                        Slika = devided[7]
                     };
                     listaKorisnika.Add(korisnik);
                 }

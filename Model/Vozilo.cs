@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarketplaceVozila.Model
 {
@@ -37,9 +33,9 @@ namespace MarketplaceVozila.Model
         {
             using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaVozila, true))
             {
-                writer.Write($"{this.Kategorija}|{this.ID}|{this.Marka}|{this.Model}|{this.SnagaMotora}" +
-                    $"|{this.RadniObujam}|{this.GodinaProizvodnje}|{this.PrijedeniKilometri}|");
-                switch (this.Kategorija)
+                writer.Write($"{Kategorija}|{ID}|{Marka}|{Model}|{SnagaMotora}" +
+                    $"|{RadniObujam}|{GodinaProizvodnje}|{PrijedeniKilometri}|");
+                switch (Kategorija)
                 {
                     case "Automobil":
                         Automobil a = this as Automobil;
@@ -65,6 +61,45 @@ namespace MarketplaceVozila.Model
                         Traktor t = this as Traktor;
                         writer.WriteLine($"{t.RadniSati}");
                         break;
+                }
+            }
+        }
+
+        public void AzurirajVozilo()
+        {
+            foreach (Vozilo v in listaVozila)
+            {
+                using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaVozila, true))
+                {
+                    writer.Write($"{v.Kategorija}|{v.ID}|{v.Marka}|{v.Model}|{v.SnagaMotora}" +
+                        $"|{v.RadniObujam}|{v.GodinaProizvodnje}|{v.PrijedeniKilometri}|");
+                    switch (Kategorija)
+                    {
+                        case "Automobil":
+                            Automobil a = v as Automobil;
+                            writer.WriteLine($"{a.TipAutomobila}|{a.Motor}|{a.Mjenjac}");
+                            break;
+
+                        case "Motocikl":
+                            Motocikl m = v as Motocikl;
+                            writer.WriteLine($"{m.Vrsta}|{m.Motor}");
+                            break;
+
+                        case "Kombi":
+                            Kombi ko = v as Kombi;
+                            writer.WriteLine($"{ko.TipKombia}|{ko.Motor}|{ko.Mjenjac}");
+                            break;
+
+                        case "Kamion":
+                            Kamion ka = v as Kamion;
+                            writer.WriteLine($"{ka.TipKamiona}|{ka.Motor}|{ka.MaksimalnaNosivost}");
+                            break;
+
+                        case "Traktor":
+                            Traktor t = v as Traktor;
+                            writer.WriteLine($"{t.RadniSati}");
+                            break;
+                    }
                 }
             }
         }

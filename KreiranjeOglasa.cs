@@ -14,8 +14,8 @@ namespace MarketplaceVozila
 {
     public partial class frmKreiranjeOglasa : Form
     {
-        string filePath;
         readonly Korisnik trenutniKorisnik;
+        string base64Img = "";
         public frmKreiranjeOglasa(Korisnik korisnik)
         {
             trenutniKorisnik = korisnik;
@@ -27,32 +27,36 @@ namespace MarketplaceVozila
             cmbKategorija.DataSource = PodatkovniKontekst.listaKategorija;
             cmbLokacija.DataSource = PodatkovniKontekst.popisLokacija;
             cmbLokacija.SelectedIndex = -1;
-            pboxSlika.Image = Image.FromFile(PodatkovniKontekst.tempSlikaOglasa);
+
+            byte[] imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
+            Image img;
+            using (MemoryStream ms = new MemoryStream(imgBytes))
+            {
+                img = Image.FromStream(ms);
+            }
+            pboxSlika.Image = img;
         }
 
         private void pboxSlika_Click(object sender, EventArgs e)
         {
-            //Dodavanje slike oglasa
-            if (!File.Exists(PodatkovniKontekst.slikeOglasa + (PodatkovniKontekst.IDs[0] + 1) + ".jpg"))
+            byte[] imgBytes;
+            Image img;
+            base64Img = PodatkovniKontekst.GetImageBase64();
+            if (base64Img != "")
             {
-                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                imgBytes = Convert.FromBase64String(base64Img);
+                using (MemoryStream ms = new MemoryStream(imgBytes))
                 {
-                    openFileDialog.InitialDirectory = "c:\\";
-                    openFileDialog.Filter = "JPG Files|*.jpg";
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        filePath = openFileDialog.FileName;
-                        Image slika = Image.FromFile(filePath);
-                        pboxSlika.Image = slika;
-                    }
+                    img = Image.FromStream(ms);
                 }
+                pboxSlika.Image = img;
             }
         }
 
         private void cmbKategorija_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Ocisti sve prilikom mijenjanja kategorije
-            pboxSlika.Image = Image.FromFile(PodatkovniKontekst.tempSlikaOglasa);
+
             string odabranaKategorija = cmbKategorija.GetItemText(cmbKategorija.SelectedItem);
             foreach (Control control in this.Controls)
             {
@@ -166,18 +170,12 @@ namespace MarketplaceVozila
                         NazivOglasa = txtNazivOglasa.Text,
                         Cijena = testParseCijena,
                         Lokacija = cmbLokacija.GetItemText(cmbLokacija.SelectedItem),
-                        Opis = txtOpis.Text.Replace(Environment.NewLine, @" \n ")
+                        Opis = txtOpis.Text.Replace(Environment.NewLine, @" \n "),
+                        Slika = base64Img
                     };
 
                     Oglas.listaOglasa.Add(oglas);
                     oglas.SpremiOglas();
-
-                    if (!string.IsNullOrEmpty(filePath))
-                    {
-                        string slikaPath = PodatkovniKontekst.slikeOglasa + oglas.ID + ".jpg";
-                        File.Copy(filePath, slikaPath);
-                        pboxSlika.Image = Image.FromFile(slikaPath);
-                    }
 
                     DialogResult d = MessageBox.Show("Oglas je kreiran", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (d == DialogResult.OK)

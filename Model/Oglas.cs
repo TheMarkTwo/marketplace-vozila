@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace MarketplaceVozila.Model
 {
@@ -17,6 +13,7 @@ namespace MarketplaceVozila.Model
         public double Cijena { get; set; } // kn
         public string Lokacija { get; set; }
         public string Opis { get; set; }
+        public string Slika { get; set; }
 
         public static List<Oglas> listaOglasa = new List<Oglas>();
 
@@ -24,7 +21,19 @@ namespace MarketplaceVozila.Model
         {
             using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaOglasa, true))
             {
-                writer.WriteLine($"{this.ID}|{this.Prodavac.ID}|{this.NazivOglasa}|{this.Cijena}|{this.Lokacija}|{this.Opis}");
+                writer.WriteLine($"{ID}|{Prodavac.ID}|{NazivOglasa}|{Cijena}|{Lokacija}|{Opis}|{Slika}");
+            }
+            PodatkovniKontekst.AzurirajID();
+        }
+
+        public void AzurirajOglas()
+        {
+            using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaOglasa))
+            {
+                foreach (Oglas o in listaOglasa)
+                {
+                    writer.WriteLine($"{o.ID}|{o.Prodavac.ID}|{o.NazivOglasa}|{o.Cijena}|{o.Lokacija}|{o.Opis}|{o.Slika}");
+                }
             }
             PodatkovniKontekst.AzurirajID();
         }
@@ -47,7 +56,8 @@ namespace MarketplaceVozila.Model
                         NazivOglasa = devided[2],
                         Cijena = double.Parse(devided[3]),
                         Lokacija = devided[4],
-                        Opis = devided[5]
+                        Opis = devided[5],
+                        Slika = devided[6]
                     };
                     listaOglasa.Add(oglas);
                 }

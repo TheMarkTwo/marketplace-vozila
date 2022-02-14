@@ -229,6 +229,7 @@ namespace MarketplaceVozila
             this.btnObrisiOglas.TabIndex = 8;
             this.btnObrisiOglas.Text = "Obrisi oglas";
             this.btnObrisiOglas.UseVisualStyleBackColor = true;
+            this.btnObrisiOglas.Click += new System.EventHandler(this.btnObrisiOglas_Click);
             // 
             // btnUrediOglas
             // 
@@ -240,6 +241,7 @@ namespace MarketplaceVozila
             this.btnUrediOglas.TabIndex = 7;
             this.btnUrediOglas.Text = "Uredi oglas";
             this.btnUrediOglas.UseVisualStyleBackColor = true;
+            this.btnUrediOglas.Click += new System.EventHandler(this.btnUrediOglas_Click);
             // 
             // btnUrediKRacun
             // 
@@ -251,6 +253,7 @@ namespace MarketplaceVozila
             this.btnUrediKRacun.TabIndex = 9;
             this.btnUrediKRacun.Text = "Uredi korisnicke podatke";
             this.btnUrediKRacun.UseVisualStyleBackColor = true;
+            this.btnUrediKRacun.Click += new System.EventHandler(this.btnUrediKRacun_Click);
             // 
             // btnObrisiKRacun
             // 
@@ -265,6 +268,7 @@ namespace MarketplaceVozila
             this.btnObrisiKRacun.TabIndex = 10;
             this.btnObrisiKRacun.Text = "Obrisi korisnicki racun";
             this.btnObrisiKRacun.UseVisualStyleBackColor = false;
+            this.btnObrisiKRacun.Click += new System.EventHandler(this.btnObrisiKRacun_Click);
             // 
             // pnlKontrole
             // 

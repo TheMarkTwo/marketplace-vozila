@@ -40,6 +40,27 @@ namespace MarketplaceVozila
             pnlAtributi.Controls.Clear();
         }
 
+        /// <summary>
+        /// Odjavljuje korisnika iz profila i vraca ga na formu prijave
+        /// </summary>
+        public static void Odjava(Form forma)
+        {
+            List<Form> otvoreneForme = new List<Form>();
+            foreach (Form frm in Application.OpenForms)
+                otvoreneForme.Add(frm);
+
+            foreach (Form frm in otvoreneForme)
+            {
+                if (frm.Name != "frmPrijava")
+                    frm.Close();
+            }
+
+            frmPrijava pri = new frmPrijava();
+            forma.Hide();
+            pri.ShowDialog();
+            forma.Close();
+        }
+
         //
         // Marketplace eventi
         private void frmMarketplace_Load(object sender, EventArgs e)
@@ -163,13 +184,16 @@ namespace MarketplaceVozila
             {
                 foreach (Oglas oglas in listaPretrazenihOglasa)
                 {
-                    Image slika;
-                    if (File.Exists($"{PodatkovniKontekst.slikeOglasa}{oglas.VoziloZaProdaju.ID}.jpg"))
-                        slika = Image.FromFile($"{PodatkovniKontekst.slikeOglasa}{oglas.VoziloZaProdaju.ID}.jpg");
-                    else
-                        slika = Image.FromFile(PodatkovniKontekst.tempSlikaOglasa);
-                    
-                    dgvPrikazOglasa.Rows.Add(oglas.ID, slika, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija} \n Prijedeni kilometri: {oglas.VoziloZaProdaju.PrijedeniKilometri.ToString("0,0") + "km"}", $"{oglas.Cijena:0,0}kn", oglas.VoziloZaProdaju.PrijedeniKilometri, oglas.Cijena);
+                    byte[] imgBytes;
+                    Image img;
+                    if (oglas.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
+                    else imgBytes = Convert.FromBase64String(oglas.Slika);
+                    using (MemoryStream ms = new MemoryStream(imgBytes))
+                    {
+                        img = Image.FromStream(ms);
+                    }
+
+                    dgvPrikazOglasa.Rows.Add(oglas.ID, img, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija} \n Prijedeni kilometri: {oglas.VoziloZaProdaju.PrijedeniKilometri.ToString("0,0") + "km"}", $"{oglas.Cijena:0,0}kn", oglas.VoziloZaProdaju.PrijedeniKilometri, oglas.Cijena);
                 }
             }
             if (dgvPrikazOglasa.SelectedRows.Count > 0)
@@ -215,20 +239,7 @@ namespace MarketplaceVozila
         // Metode za otvaranje drugih formi
         private void btnOdjava_Click(object sender, EventArgs e)
         {
-            List<Form> otvoreneForme = new List<Form>();
-            foreach (Form frm in Application.OpenForms)
-                otvoreneForme.Add(frm);
-
-            foreach (Form frm in otvoreneForme)
-            {
-                if (frm.Name != "frmPrijava")
-                    frm.Close();
-            }
-
-            frmPrijava pri = new frmPrijava();
-            this.Hide();
-            pri.ShowDialog();
-            this.Close();
+            Odjava(this);
         }
 
         private void lblKorisnickoIme_Click(object sender, EventArgs e)

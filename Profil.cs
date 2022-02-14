@@ -25,12 +25,16 @@ namespace MarketplaceVozila
         {
             //popunjavanje polja korisnickim podatcima
             this.Text = trenutniKorisnik.KorisnickoIme;
-            string putanjaSlike = $"{PodatkovniKontekst.slikeKorisnika}{trenutniKorisnik.ID}.jpg";
-            if (File.Exists(putanjaSlike))
-                pboxProfilna.Image = Image.FromFile(putanjaSlike);
-            else
-                pboxProfilna.Image = Image.FromFile(PodatkovniKontekst.tempProfilna);
-            putanjaSlike = null;
+
+            byte[] imgBytes;
+            Image img;
+            if (trenutniKorisnik.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempProfilna);
+            else imgBytes = Convert.FromBase64String(trenutniKorisnik.Slika);
+            using (MemoryStream ms = new MemoryStream(imgBytes))
+            {
+                img = Image.FromStream(ms);
+            }
+            pboxProfilna.Image = img;
 
             if (!_vlastitiProfil)
                 pboxProfilna.Cursor = Cursors.Default;
@@ -55,12 +59,14 @@ namespace MarketplaceVozila
             {
                 foreach (Oglas oglas in korisniceviOglasi)
                 {
-                    Image slika;
-                    if (File.Exists($"{PodatkovniKontekst.slikeOglasa}{oglas.VoziloZaProdaju.ID}.jpg"))
-                        slika = Image.FromFile($"{PodatkovniKontekst.slikeOglasa}{oglas.VoziloZaProdaju.ID}.jpg");
-                    else
-                        slika = Image.FromFile(PodatkovniKontekst.tempSlikaOglasa);
-                    dgvPrikazOglasa.Rows.Add(oglas.ID, slika, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija}", $"{oglas.Cijena:0,0}kn");
+                    if (oglas.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
+                    else imgBytes = Convert.FromBase64String(oglas.Slika);
+                    using (MemoryStream ms = new MemoryStream(imgBytes))
+                    {
+                        img = Image.FromStream(ms);
+                    }
+
+                    dgvPrikazOglasa.Rows.Add(oglas.ID, img, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija}", $"{oglas.Cijena:0,0}kn");
                 }
                 dgvPrikazOglasa.CurrentRow.Selected = false;
             }
@@ -70,25 +76,20 @@ namespace MarketplaceVozila
         {
             if (_vlastitiProfil)
             {
-                string profilnaPath = PodatkovniKontekst.slikeKorisnika + trenutniKorisnik.ID + ".jpg";
-                //dodavanje profilne slike
-                //if (!File.Exists(profilnaPath)) // dodaj replace slike
-                //{
-                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                byte[] imgBytes;
+                Image img;
+                string base64Img = PodatkovniKontekst.GetImageBase64();
+                if (base64Img != "")
                 {
-                    openFileDialog.InitialDirectory = "c:\\";
-                    openFileDialog.Filter = "JPG Files|*.jpg";
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    trenutniKorisnik.Slika = base64Img;
+                    imgBytes = Convert.FromBase64String(base64Img);
+                    using (MemoryStream ms = new MemoryStream(imgBytes))
                     {
-                        pboxProfilna.Image = null;
-                        if (File.Exists(profilnaPath))
-                            File.Delete(profilnaPath);
-                        string filePath = openFileDialog.FileName;
-                        File.Copy(filePath, profilnaPath);
-                        pboxProfilna.Image = Image.FromFile(profilnaPath);
+                        img = Image.FromStream(ms);
                     }
-                }
-                //}
+                    pboxProfilna.Image = img;
+                    trenutniKorisnik.AzurirajKorisnika();
+                } 
             }
         }
 
@@ -97,6 +98,30 @@ namespace MarketplaceVozila
             Oglas oglas = Oglas.listaOglasa.Where(o => o.ID == int.Parse(dgvPrikazOglasa.Rows[e.RowIndex].Cells[0].Value.ToString())).ToList()[0];
             frmDetaljiOglasa deog = new frmDetaljiOglasa(oglas, trenutniKorisnik);
             deog.Show();
+        }
+
+        private void btnObrisiKRacun_Click(object sender, EventArgs e)
+        {
+            DialogResult d = MessageBox.Show("Jeste li sigurni da zelite izbrisati korisnicki racun?", "Brisanje korisnickog racuna", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (d == DialogResult.Yes)
+            {
+                frmMarketplace.Odjava(this);
+            }
+        }
+
+        private void btnUrediKRacun_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUrediOglas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnObrisiOglas_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
