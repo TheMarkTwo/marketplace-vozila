@@ -30,7 +30,7 @@ namespace MarketplaceVozila
 
             if (!uspjesno)
             {
-                DialogResult d = MessageBox.Show("Sva polja su potrebna popuniti ili su korisnicko ime/email vec u koristi", "Greska", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+                DialogResult d = MessageBox.Show("Sva polja su potrebna popuniti", "Greska", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
                 if (d == DialogResult.Retry)
                 {
                     foreach (Control control in pnlPodatci.Controls)

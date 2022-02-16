@@ -111,7 +111,8 @@ namespace MarketplaceVozila
 
         private void btnUrediKRacun_Click(object sender, EventArgs e)
         {
-
+            UrediRacun urra = new UrediRacun(trenutniKorisnik);
+            urra.ShowDialog();
         }
 
         private void btnUrediOglas_Click(object sender, EventArgs e)

@@ -66,6 +66,9 @@ namespace MarketplaceVozila.Model
             }
         }
 
+        /// <summary>
+        /// Dohvaca sve podatke iz baza
+        /// </summary>
         public static void DohvatiPodatke()
         {
             DohvatiID();
@@ -74,6 +77,10 @@ namespace MarketplaceVozila.Model
             Oglas.DohvatiOglase();
         }
 
+        /// <summary>
+        /// Pretvara odabrane slike u Base64 format
+        /// </summary>
+        /// <returns>Base64 format slike</returns>
         public static string GetImageBase64()
         {
             string base64Image = "";
