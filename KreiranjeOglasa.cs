@@ -28,6 +28,7 @@ namespace MarketplaceVozila
             cmbLokacija.DataSource = PodatkovniKontekst.popisLokacija;
             cmbLokacija.SelectedIndex = -1;
 
+            //slika
             byte[] imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
             Image img;
             using (MemoryStream ms = new MemoryStream(imgBytes))
@@ -56,7 +57,6 @@ namespace MarketplaceVozila
         private void cmbKategorija_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Ocisti sve prilikom mijenjanja kategorije
-
             string odabranaKategorija = cmbKategorija.GetItemText(cmbKategorija.SelectedItem);
             foreach (Control control in this.Controls)
             {

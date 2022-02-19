@@ -65,15 +65,15 @@ namespace MarketplaceVozila.Model
             }
         }
 
-        public void AzurirajVozilo()
+        public static void AzurirajVozila()
         {
-            foreach (Vozilo v in listaVozila)
+            using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaVozila))
             {
-                using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaVozila, true))
+                foreach (Vozilo v in listaVozila)
                 {
                     writer.Write($"{v.Kategorija}|{v.ID}|{v.Marka}|{v.Model}|{v.SnagaMotora}" +
-                        $"|{v.RadniObujam}|{v.GodinaProizvodnje}|{v.PrijedeniKilometri}|");
-                    switch (Kategorija)
+                    $"|{v.RadniObujam}|{v.GodinaProizvodnje}|{v.PrijedeniKilometri}|");
+                    switch (v.Kategorija)
                     {
                         case "Automobil":
                             Automobil a = v as Automobil;

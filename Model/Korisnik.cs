@@ -25,7 +25,7 @@ namespace MarketplaceVozila.Model
             PodatkovniKontekst.AzurirajID();
         }
 
-        public void AzurirajKorisnika()
+        public static void AzurirajKorisnike()
         {
             using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaKorisnika))
             {

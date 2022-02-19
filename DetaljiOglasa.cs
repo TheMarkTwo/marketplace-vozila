@@ -59,23 +59,5 @@ namespace MarketplaceVozila
             frmProfil prof = new frmProfil(trenutniOglas.Prodavac, vlastitiOglas);
             prof.Show();
         }
-
-        private void pboxSlika_Click(object sender, EventArgs e)
-        {
-            byte[] imgBytes;
-            Image img;
-            string base64Img = PodatkovniKontekst.GetImageBase64();
-            if (base64Img != "")
-            {
-                trenutniOglas.Slika = base64Img;
-                imgBytes = Convert.FromBase64String(base64Img);
-                using (MemoryStream ms = new MemoryStream(imgBytes))
-                {
-                    img = Image.FromStream(ms);
-                }
-                pboxSlika.Image = img;
-                trenutniOglas.AzurirajOglas();
-            }
-        }
     }
 }

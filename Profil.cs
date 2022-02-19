@@ -11,6 +11,9 @@ namespace MarketplaceVozila
 {
     public partial class frmProfil : Form
     {
+        public bool izbrisanOglas { get; set; } = false;
+        byte[] imgBytes;
+        Image img;
         List<Oglas> korisniceviOglasi = new List<Oglas>();
         Korisnik trenutniKorisnik;
         bool _vlastitiProfil;
@@ -21,13 +24,28 @@ namespace MarketplaceVozila
             InitializeComponent();
         }
 
+        public void AzurirajDGV()
+        {
+            dgvPrikazOglasa.Rows.Clear();
+            korisniceviOglasi = Oglas.listaOglasa.Where(oglas => oglas.Prodavac.ID == trenutniKorisnik.ID).ToList();
+            if (korisniceviOglasi.Count != 0)
+            {
+                foreach (Oglas oglas in korisniceviOglasi)
+                {
+                    if (oglas.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
+                    else imgBytes = Convert.FromBase64String(oglas.Slika);
+                    using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
+                    dgvPrikazOglasa.Rows.Add(oglas.ID, img, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija}", $"{oglas.Cijena:0,0}kn");
+                }
+                dgvPrikazOglasa.CurrentRow.Selected = false;
+            }
+        }
+
         private void Profil_Load(object sender, EventArgs e)
         {
             //popunjavanje polja korisnickim podatcima
             this.Text = trenutniKorisnik.KorisnickoIme;
 
-            byte[] imgBytes;
-            Image img;
             if (trenutniKorisnik.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempProfilna);
             else imgBytes = Convert.FromBase64String(trenutniKorisnik.Slika);
             using (MemoryStream ms = new MemoryStream(imgBytes))
@@ -54,22 +72,7 @@ namespace MarketplaceVozila
             }
 
             //popunjavanje DataGridView-a sa korisnicevim oglasima
-            korisniceviOglasi = Oglas.listaOglasa.Where(oglas => oglas.Prodavac.ID == trenutniKorisnik.ID).ToList();
-            if (korisniceviOglasi.Count != 0)
-            {
-                foreach (Oglas oglas in korisniceviOglasi)
-                {
-                    if (oglas.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
-                    else imgBytes = Convert.FromBase64String(oglas.Slika);
-                    using (MemoryStream ms = new MemoryStream(imgBytes))
-                    {
-                        img = Image.FromStream(ms);
-                    }
-
-                    dgvPrikazOglasa.Rows.Add(oglas.ID, img, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija}", $"{oglas.Cijena:0,0}kn");
-                }
-                dgvPrikazOglasa.CurrentRow.Selected = false;
-            }
+            AzurirajDGV();
         }
 
         private void pboxProfilna_Click(object sender, EventArgs e)
@@ -88,7 +91,7 @@ namespace MarketplaceVozila
                         img = Image.FromStream(ms);
                     }
                     pboxProfilna.Image = img;
-                    trenutniKorisnik.AzurirajKorisnika();
+                    Korisnik.AzurirajKorisnike();
                 } 
             }
         }
@@ -117,12 +120,26 @@ namespace MarketplaceVozila
 
         private void btnUrediOglas_Click(object sender, EventArgs e)
         {
-
+            if (dgvPrikazOglasa.SelectedRows.Count > 0)
+            {
+                Oglas oglas = Oglas.listaOglasa.Where(o => o.ID == int.Parse(dgvPrikazOglasa.Rows[dgvPrikazOglasa.CurrentCell.RowIndex].Cells[0].Value.ToString())).ToList()[0];
+                UrediOglas urog = new UrediOglas(oglas);
+                urog.ShowDialog();
+            }
         }
 
         private void btnObrisiOglas_Click(object sender, EventArgs e)
         {
-
+            if (dgvPrikazOglasa.SelectedRows.Count > 0)
+            {
+                Oglas oglas = Oglas.listaOglasa.Where(o => o.ID == int.Parse(dgvPrikazOglasa.Rows[dgvPrikazOglasa.CurrentCell.RowIndex].Cells[0].Value.ToString())).ToList()[0];
+                Vozilo.listaVozila.Remove(oglas.VoziloZaProdaju);
+                Oglas.listaOglasa.Remove(oglas);
+                Vozilo.AzurirajVozila();
+                Oglas.AzurirajOglase();
+                izbrisanOglas = true;
+                AzurirajDGV();
+            }
         }
     }
 }

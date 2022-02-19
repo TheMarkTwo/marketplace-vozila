@@ -246,6 +246,7 @@ namespace MarketplaceVozila
         {
             frmProfil pro = new frmProfil(trenutniKorisnik, true);
             pro.ShowDialog();
+            if (pro.izbrisanOglas) dgvPrikazOglasa.Rows.Clear();
         }
 
         private void btnKreirajOglas_Click(object sender, EventArgs e)

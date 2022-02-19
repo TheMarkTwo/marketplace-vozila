@@ -52,7 +52,6 @@ namespace MarketplaceVozila
             this.pboxSlika.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pboxSlika.TabIndex = 2;
             this.pboxSlika.TabStop = false;
-            this.pboxSlika.Click += new System.EventHandler(this.pboxSlika_Click);
             // 
             // lblKilometraza
             // 

@@ -97,10 +97,13 @@ namespace MarketplaceVozila
                             trenutniKorisnik.Adresa = txtAdresa.Text;
                             trenutniKorisnik.Broj = txtTelefon.Text;
                             if (txtLozinka.Text != "" && txtPotvrdiLozinku.Text != "") trenutniKorisnik.Lozinka = txtLozinka.Text;
+                            break;
                         }
                     }
-                    trenutniKorisnik.AzurirajKorisnika();
-                    MessageBox.Show("Spremili ste nove podatke", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Korisnik.AzurirajKorisnike();
+                    DialogResult di = MessageBox.Show("Spremili ste nove podatke", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (di == DialogResult.OK)
+                        this.Close();
                 }
             }
         }

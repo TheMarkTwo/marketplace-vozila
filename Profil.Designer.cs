@@ -175,7 +175,7 @@ namespace MarketplaceVozila
             this.dgvPrikazOglasa.RowTemplate.Height = 152;
             this.dgvPrikazOglasa.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvPrikazOglasa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPrikazOglasa.Size = new System.Drawing.Size(576, 452);
+            this.dgvPrikazOglasa.Size = new System.Drawing.Size(596, 452);
             this.dgvPrikazOglasa.TabIndex = 2;
             this.dgvPrikazOglasa.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrikazOglasa_CellContentDoubleClick);
             // 

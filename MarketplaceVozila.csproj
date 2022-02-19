@@ -96,6 +96,12 @@
     <Compile Include="Registracija.Designer.cs">
       <DependentUpon>Registracija.cs</DependentUpon>
     </Compile>
+    <Compile Include="UrediOglas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UrediOglas.Designer.cs">
+      <DependentUpon>UrediOglas.cs</DependentUpon>
+    </Compile>
     <Compile Include="UrediRacun.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="Registracija.resx">
       <DependentUpon>Registracija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UrediOglas.resx">
+      <DependentUpon>UrediOglas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UrediRacun.resx">
       <DependentUpon>UrediRacun.cs</DependentUpon>

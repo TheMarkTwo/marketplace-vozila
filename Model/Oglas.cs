@@ -26,7 +26,7 @@ namespace MarketplaceVozila.Model
             PodatkovniKontekst.AzurirajID();
         }
 
-        public void AzurirajOglas()
+        public static void AzurirajOglase()
         {
             using (StreamWriter writer = new StreamWriter(PodatkovniKontekst.bazaOglasa))
             {
@@ -35,7 +35,6 @@ namespace MarketplaceVozila.Model
                     writer.WriteLine($"{o.ID}|{o.Prodavac.ID}|{o.NazivOglasa}|{o.Cijena}|{o.Lokacija}|{o.Opis}|{o.Slika}");
                 }
             }
-            PodatkovniKontekst.AzurirajID();
         }
 
         public static void DohvatiOglase()
