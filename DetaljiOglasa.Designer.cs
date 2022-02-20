@@ -39,7 +39,12 @@ namespace MarketplaceVozila
             this.lblProdavac = new System.Windows.Forms.Label();
             this.lblOpis = new System.Windows.Forms.Label();
             this.txtOpis = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblProp1 = new System.Windows.Forms.Label();
+            this.lblProp2 = new System.Windows.Forms.Label();
+            this.lblProp3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pboxSlika)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pboxSlika
@@ -141,11 +146,49 @@ namespace MarketplaceVozila
             this.txtOpis.TabStop = false;
             this.txtOpis.Text = "opis";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblProp3);
+            this.panel1.Controls.Add(this.lblProp2);
+            this.panel1.Controls.Add(this.lblProp1);
+            this.panel1.Location = new System.Drawing.Point(3, 374);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(317, 123);
+            this.panel1.TabIndex = 18;
+            // 
+            // lblProp1
+            // 
+            this.lblProp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProp1.Location = new System.Drawing.Point(9, 7);
+            this.lblProp1.Name = "lblProp1";
+            this.lblProp1.Size = new System.Drawing.Size(300, 20);
+            this.lblProp1.TabIndex = 19;
+            this.lblProp1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblProp2
+            // 
+            this.lblProp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProp2.Location = new System.Drawing.Point(9, 30);
+            this.lblProp2.Name = "lblProp2";
+            this.lblProp2.Size = new System.Drawing.Size(300, 20);
+            this.lblProp2.TabIndex = 20;
+            this.lblProp2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblProp3
+            // 
+            this.lblProp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProp3.Location = new System.Drawing.Point(9, 52);
+            this.lblProp3.Name = "lblProp3";
+            this.lblProp3.Size = new System.Drawing.Size(300, 20);
+            this.lblProp3.TabIndex = 21;
+            this.lblProp3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmDetaljiOglasa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 536);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtOpis);
             this.Controls.Add(this.lblOpis);
             this.Controls.Add(this.lblProdavac);
@@ -163,6 +206,7 @@ namespace MarketplaceVozila
             this.Text = "Oglas ###";
             this.Load += new System.EventHandler(this.frmDetaljiOglasa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pboxSlika)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +223,9 @@ namespace MarketplaceVozila
         private System.Windows.Forms.Label lblProdavac;
         private System.Windows.Forms.Label lblOpis;
         private System.Windows.Forms.TextBox txtOpis;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblProp3;
+        private System.Windows.Forms.Label lblProp2;
+        private System.Windows.Forms.Label lblProp1;
     }
 }

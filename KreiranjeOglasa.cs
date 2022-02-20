@@ -31,10 +31,7 @@ namespace MarketplaceVozila
             //slika
             byte[] imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
             Image img;
-            using (MemoryStream ms = new MemoryStream(imgBytes))
-            {
-                img = Image.FromStream(ms);
-            }
+            using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
             pboxSlika.Image = img;
         }
 
@@ -46,10 +43,7 @@ namespace MarketplaceVozila
             if (base64Img != "")
             {
                 imgBytes = Convert.FromBase64String(base64Img);
-                using (MemoryStream ms = new MemoryStream(imgBytes))
-                {
-                    img = Image.FromStream(ms);
-                }
+                using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
                 pboxSlika.Image = img;
             }
         }

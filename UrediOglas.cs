@@ -14,7 +14,7 @@ namespace MarketplaceVozila
 {
     public partial class UrediOglas : Form
     {
-        Oglas trenutniOglas;
+        readonly Oglas trenutniOglas;
         string base64Img;
         public UrediOglas(Oglas oglas)
         {
@@ -46,10 +46,7 @@ namespace MarketplaceVozila
             if (trenutniOglas.Slika != "") imgBytes = Convert.FromBase64String(trenutniOglas.Slika);
             else imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
             Image img;
-            using (MemoryStream ms = new MemoryStream(imgBytes))
-            {
-                img = Image.FromStream(ms);
-            }
+            using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
             pboxSlika.Image = img;
 
             //podatci
@@ -94,13 +91,13 @@ namespace MarketplaceVozila
                     PopuniVrijednostKontrola(pnlAtributi, new string[] {
                         ((Kamion)trenutniOglas.VoziloZaProdaju).TipKamiona,
                         ((Kamion)trenutniOglas.VoziloZaProdaju).Motor,
-                        ((Kamion)trenutniOglas.VoziloZaProdaju).MaksimalnaNosivost.ToString()
+                        ((Kamion)trenutniOglas.VoziloZaProdaju).MaksimalnaNosivost.ToString("0,0")
                     });
                     break;
 
                 case "Traktor":
                     PopuniVrijednostKontrola(pnlAtributi, new string[] {
-                        ((Traktor)trenutniOglas.VoziloZaProdaju).RadniSati.ToString()
+                        ((Traktor)trenutniOglas.VoziloZaProdaju).RadniSati.ToString("0,0")
                     });
                     break;
 
@@ -129,10 +126,7 @@ namespace MarketplaceVozila
             if (base64Img != "")
             {
                 imgBytes = Convert.FromBase64String(base64Img);
-                using (MemoryStream ms = new MemoryStream(imgBytes))
-                {
-                    img = Image.FromStream(ms);
-                }
+                using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
                 pboxSlika.Image = img;
                 trenutniOglas.Slika = base64Img;
             }

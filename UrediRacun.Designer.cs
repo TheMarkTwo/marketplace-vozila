@@ -29,6 +29,7 @@ namespace MarketplaceVozila
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UrediRacun));
             this.pnlPodatci = new System.Windows.Forms.Panel();
             this.txtKorisnickoIme = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -210,6 +211,9 @@ namespace MarketplaceVozila
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblLozinka);
             this.Controls.Add(this.lblKorisnickoIme);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "UrediRacun";
             this.Text = "Uredivanje racuna";
             this.Load += new System.EventHandler(this.UrediRacun_Load);

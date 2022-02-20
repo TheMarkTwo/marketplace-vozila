@@ -86,7 +86,14 @@ namespace MarketplaceVozila
                 };
                 Korisnik.listaKorisnika.Add(korisnik);
                 korisnik.SpremiKorisnika();
-                MessageBox.Show("Registrirali ste se", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult d = MessageBox.Show("Registrirali ste se", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (d == DialogResult.OK)
+                {
+                    frmPrijava pri = new frmPrijava();
+                    this.Hide();
+                    pri.ShowDialog();
+                    this.Close();
+                }
             }
         }
 

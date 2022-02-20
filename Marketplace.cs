@@ -43,7 +43,7 @@ namespace MarketplaceVozila
         /// <summary>
         /// Odjavljuje korisnika iz profila i vraca ga na formu prijave
         /// </summary>
-        public static void Odjava(Form forma)
+        public void Odjava()
         {
             List<Form> otvoreneForme = new List<Form>();
             foreach (Form frm in Application.OpenForms)
@@ -56,9 +56,9 @@ namespace MarketplaceVozila
             }
 
             frmPrijava pri = new frmPrijava();
-            forma.Hide();
+            this.Hide();
             pri.ShowDialog();
-            forma.Close();
+            this.Close();
         }
 
         //
@@ -188,10 +188,7 @@ namespace MarketplaceVozila
                     Image img;
                     if (oglas.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
                     else imgBytes = Convert.FromBase64String(oglas.Slika);
-                    using (MemoryStream ms = new MemoryStream(imgBytes))
-                    {
-                        img = Image.FromStream(ms);
-                    }
+                    using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
 
                     dgvPrikazOglasa.Rows.Add(oglas.ID, img, $"{oglas.NazivOglasa} \n\n\n {oglas.VoziloZaProdaju} \n Zupanija: {oglas.Lokacija} \n Prijedeni kilometri: {oglas.VoziloZaProdaju.PrijedeniKilometri.ToString("0,0") + "km"}", $"{oglas.Cijena:0,0}kn", oglas.VoziloZaProdaju.PrijedeniKilometri, oglas.Cijena);
                 }
@@ -239,7 +236,7 @@ namespace MarketplaceVozila
         // Metode za otvaranje drugih formi
         private void btnOdjava_Click(object sender, EventArgs e)
         {
-            Odjava(this);
+            Odjava();
         }
 
         private void lblKorisnickoIme_Click(object sender, EventArgs e)
@@ -247,6 +244,22 @@ namespace MarketplaceVozila
             frmProfil pro = new frmProfil(trenutniKorisnik, true);
             pro.ShowDialog();
             if (pro.izbrisanOglas) dgvPrikazOglasa.Rows.Clear();
+            if (pro.izbrisanProfil)
+            {
+                for (int i = Oglas.listaOglasa.Count; i-- > 0;)
+                {
+                    if (trenutniKorisnik.ID == Oglas.listaOglasa[i].Prodavac.ID)
+                    {
+                        Vozilo.listaVozila.Remove(Oglas.listaOglasa[i].VoziloZaProdaju);
+                        Oglas.listaOglasa.Remove(Oglas.listaOglasa[i]);
+                    }
+                }
+                Vozilo.AzurirajVozila();
+                Oglas.AzurirajOglase();
+                Korisnik.listaKorisnika.Remove(trenutniKorisnik);
+                Korisnik.AzurirajKorisnike();
+                Odjava();
+            }
         }
 
         private void btnKreirajOglas_Click(object sender, EventArgs e)

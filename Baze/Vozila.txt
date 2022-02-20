@@ -5,3 +5,5 @@ Automobil|20|Porsche|Taycan|350|0|2021|6500|performance|Struja|Automatski
 Automobil|23|VW|Golf 2|60|1.6|1981|200000|1.6TDI|Dizel|Manualni
 Automobil|27|VW|Golf 7|100|0|2018|25000|e-Golf|Struja|Automatski
 Automobil|28|Alfa Romeo|Giulietta|105|2|2012|170010|2,0|Dizel|Manualni
+Motocikl|37|Piaggio |Vespa 50 LX|3|0.49|2009|12590|Skuter|Dvotaktni
+Automobil|38|Opel|Astra|85|1.6|2008|82000|1,6 16V|Benzin|Manualni

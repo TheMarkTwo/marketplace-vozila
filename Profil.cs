@@ -12,11 +12,15 @@ namespace MarketplaceVozila
     public partial class frmProfil : Form
     {
         public bool izbrisanOglas { get; set; } = false;
+        public bool izbrisanProfil { get; set; } = false;
+
         byte[] imgBytes;
         Image img;
+
         List<Oglas> korisniceviOglasi = new List<Oglas>();
-        Korisnik trenutniKorisnik;
-        bool _vlastitiProfil;
+        readonly Korisnik trenutniKorisnik;
+        readonly bool _vlastitiProfil;
+
         public frmProfil(Korisnik korisnik, bool vlastitiProfil)
         {
             _vlastitiProfil = vlastitiProfil;
@@ -46,12 +50,9 @@ namespace MarketplaceVozila
             //popunjavanje polja korisnickim podatcima
             this.Text = trenutniKorisnik.KorisnickoIme;
 
-            if (trenutniKorisnik.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempProfilna);
+            if (trenutniKorisnik.Slika == "" || trenutniKorisnik.Slika == null) imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempProfilna);
             else imgBytes = Convert.FromBase64String(trenutniKorisnik.Slika);
-            using (MemoryStream ms = new MemoryStream(imgBytes))
-            {
-                img = Image.FromStream(ms);
-            }
+            using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
             pboxProfilna.Image = img;
 
             if (!_vlastitiProfil)
@@ -86,10 +87,7 @@ namespace MarketplaceVozila
                 {
                     trenutniKorisnik.Slika = base64Img;
                     imgBytes = Convert.FromBase64String(base64Img);
-                    using (MemoryStream ms = new MemoryStream(imgBytes))
-                    {
-                        img = Image.FromStream(ms);
-                    }
+                    using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
                     pboxProfilna.Image = img;
                     Korisnik.AzurirajKorisnike();
                 } 
@@ -108,7 +106,8 @@ namespace MarketplaceVozila
             DialogResult d = MessageBox.Show("Jeste li sigurni da zelite izbrisati korisnicki racun?", "Brisanje korisnickog racuna", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (d == DialogResult.Yes)
             {
-                frmMarketplace.Odjava(this);
+                izbrisanProfil = true;
+                this.Close();
             }
         }
 

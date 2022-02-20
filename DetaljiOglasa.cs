@@ -14,8 +14,8 @@ namespace MarketplaceVozila
 {
     public partial class frmDetaljiOglasa : Form
     {
-        Oglas trenutniOglas;
-        Korisnik trenutniKorisnik;
+        readonly Oglas trenutniOglas;
+        readonly Korisnik trenutniKorisnik;
         public frmDetaljiOglasa(Oglas oglas, Korisnik korisnik)
         {
             trenutniKorisnik = korisnik;
@@ -28,14 +28,9 @@ namespace MarketplaceVozila
             this.Text = "Oglas #" + trenutniOglas.ID;
 
             byte[] imgBytes;
-            Image img;
             if (trenutniOglas.Slika == "") imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempSlikaOglasa);
             else imgBytes = Convert.FromBase64String(trenutniOglas.Slika);
-            using (MemoryStream ms = new MemoryStream(imgBytes))
-            {
-                img = Image.FromStream(ms);
-            }
-            pboxSlika.Image = img;
+            using (MemoryStream ms = new MemoryStream(imgBytes)) pboxSlika.Image = Image.FromStream(ms);
 
             lblNazivOglasa.Text = trenutniOglas.NazivOglasa;
             lblCijena.Text = trenutniOglas.Cijena.ToString("0,0") + "kn";
@@ -45,6 +40,39 @@ namespace MarketplaceVozila
             lblKilometraza.Text = trenutniOglas.VoziloZaProdaju.PrijedeniKilometri.ToString("0,0") + "km";
             lblGodina.Text = trenutniOglas.VoziloZaProdaju.GodinaProizvodnje + ". godina";
             txtOpis.Text = trenutniOglas.Opis.Replace(@" \n ", Environment.NewLine);
+
+            switch (trenutniOglas.VoziloZaProdaju.Kategorija)
+            {
+                case "Automobil":
+                    lblProp1.Text = "Tip automobila: " + ((Automobil)trenutniOglas.VoziloZaProdaju).TipAutomobila;
+                    lblProp2.Text = "Motor: " + ((Automobil)trenutniOglas.VoziloZaProdaju).Motor;
+                    lblProp3.Text = "Mjenjac: " + ((Automobil)trenutniOglas.VoziloZaProdaju).Mjenjac;
+                    break;
+
+                case "Motocikl":
+                    lblProp1.Text = "Vrsta motora: " + ((Motocikl)trenutniOglas.VoziloZaProdaju).Vrsta;
+                    lblProp2.Text = "Motor: " + ((Motocikl)trenutniOglas.VoziloZaProdaju).Motor;
+                    break;
+
+                case "Kombi":
+                    lblProp1.Text = "Tip kombia: " + ((Kombi)trenutniOglas.VoziloZaProdaju).TipKombia;
+                    lblProp2.Text = "Motor: " + ((Kombi)trenutniOglas.VoziloZaProdaju).Motor;
+                    lblProp3.Text = "Mjenjac: " + ((Kombi)trenutniOglas.VoziloZaProdaju).Mjenjac;
+                    break;
+
+                case "Kamion":
+                    lblProp1.Text = "Tip kamiona: " + ((Kamion)trenutniOglas.VoziloZaProdaju).TipKamiona;
+                    lblProp2.Text = "Motor: " + ((Kamion)trenutniOglas.VoziloZaProdaju).Motor;
+                    lblProp3.Text = "Maksimalna nosivost: " + ((Kamion)trenutniOglas.VoziloZaProdaju).MaksimalnaNosivost.ToString() + "t";
+                    break;
+
+                case "Traktor":
+                    lblProp1.Text = "Radni sati: " + ((Traktor)trenutniOglas.VoziloZaProdaju).RadniSati.ToString();
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void lblProdavac_Click(object sender, EventArgs e)
