@@ -151,14 +151,14 @@ namespace MarketplaceVozila.Model
                 panel.Controls.Add(lblMotor);
 
                 // Maksimalna nosivost
-                Label lblMaksNosivost = new Label() { Text = "Nosivost:", Location = new Point(-3, 80) };
+                Label lblMaksNosivost = new Label() { Text = "Nosivost do:", Location = new Point(-3, 80) };
                 TextBox txtMaksNosivost = new TextBox() { Width = 121, Location = new Point(0, 96), Size = velicina };
                 panel.Controls.Add(txtMaksNosivost);
                 panel.Controls.Add(lblMaksNosivost);
             }
             else if (odabranaKategorija == "Traktor")
             {
-                Label lblRadniSati = new Label() { Text = "Radni sati:", Location = new Point(-3, 0) };
+                Label lblRadniSati = new Label() { Text = "Radni sati do:", Location = new Point(-3, 0) };
                 TextBox txtRadniSati = new TextBox() { Width = 121, Location = new Point(0, 16), Size = velicina };
                 panel.Controls.Add(txtRadniSati);
                 panel.Controls.Add(lblRadniSati);

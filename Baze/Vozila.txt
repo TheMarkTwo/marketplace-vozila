@@ -7,3 +7,7 @@ Automobil|27|VW|Golf 7|100|0|2018|25000|e-Golf|Struja|Automatski
 Automobil|28|Alfa Romeo|Giulietta|105|2|2012|170010|2,0|Dizel|Manualni
 Motocikl|37|Piaggio |Vespa 50 LX|3|0.49|2009|12590|Skuter|Dvotaktni
 Automobil|38|Opel|Astra|85|1.6|2008|82000|1,6 16V|Benzin|Manualni
+Motocikl|39|Suzuki|BANDIT 600cc GSF/S|57|0.6|2004|39000|Cestovni|Cetverotaktni
+Kombi|40|Renault|Master|107|2.3|2012|517000|2.0dCi|Dizel|Manualni
+Kamion|41|Renault|T480|360|13|2022|50|T480 13L 2022|Dizel|7.5
+Traktor|42|John Deere|6520|86|6.8|2003|0|8673

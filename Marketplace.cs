@@ -38,6 +38,7 @@ namespace MarketplaceVozila
             cmbModel.Enabled = false;
             cmbModel.SelectedIndex = -1;
             pnlAtributi.Controls.Clear();
+            dgvPrikazOglasa.Rows.Clear();
         }
 
         /// <summary>
@@ -120,15 +121,16 @@ namespace MarketplaceVozila
             bool validno;
             int intOd = 0; int intDo = 9999;
             double doubleOd = 0; double doubleDo = 99999999;
+            string kategorija = cmbKategorija.GetItemText(cmbKategorija.SelectedItem);
 
-            if (cmbKategorija.GetItemText(cmbKategorija.SelectedItem) != "")
-                listaPretrazenihOglasa = Oglas.listaOglasa.Where(o => o.VoziloZaProdaju.Kategorija == cmbKategorija.GetItemText(cmbKategorija.SelectedItem)).ToList();
+            if (kategorija != "")
+                listaPretrazenihOglasa = Oglas.listaOglasa.Where(o => o.VoziloZaProdaju.Kategorija == kategorija).ToList();
             if (cmbMarka.GetItemText(cmbMarka.SelectedItem) != "")
                 listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => o.VoziloZaProdaju.Marka == cmbMarka.GetItemText(cmbMarka.SelectedItem)).ToList();
             if (cmbModel.GetItemText(cmbModel.SelectedItem) != "")
                 listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => o.VoziloZaProdaju.Model == cmbModel.GetItemText(cmbModel.SelectedItem)).ToList();
 
-            if (cmbKategorija.GetItemText(cmbKategorija.SelectedItem) != "")
+            if (kategorija != "")
             {
                 if (txtSnagaMotoraOd.Text != "" || txtSnagaMotoraDo.Text != "")
                 {
@@ -177,6 +179,48 @@ namespace MarketplaceVozila
 
             if (cmbLokacija.GetItemText(cmbLokacija.SelectedItem) != "")
                 listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => o.Lokacija == cmbLokacija.GetItemText(cmbLokacija.SelectedItem)).ToList();
+
+            string[] vrijednostiAtr = PodatkovniKontekst.DohvatiVrijednostiKontrola(pnlAtributi);
+            try
+            {
+                switch (kategorija)
+                {
+                    case "Automobil":
+                        if (vrijednostiAtr[0] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Automobil)o.VoziloZaProdaju).TipAutomobila.Contains(vrijednostiAtr[0])).ToList();
+                        if (vrijednostiAtr[1] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Automobil)o.VoziloZaProdaju).Motor == vrijednostiAtr[1]).ToList();
+                        if (vrijednostiAtr[2] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Automobil)o.VoziloZaProdaju).Mjenjac == vrijednostiAtr[2]).ToList();
+                        break;
+
+                    case "Motocikl":
+                        if (vrijednostiAtr[0] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Motocikl)o.VoziloZaProdaju).Vrsta == vrijednostiAtr[0]).ToList();
+                        if (vrijednostiAtr[1] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Motocikl)o.VoziloZaProdaju).Motor == vrijednostiAtr[1]).ToList();
+                        break;
+
+                    case "Kombi":
+                        if (vrijednostiAtr[0] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Kombi)o.VoziloZaProdaju).TipKombia.Contains(vrijednostiAtr[0])).ToList();
+                        if (vrijednostiAtr[1] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Kombi)o.VoziloZaProdaju).Motor == vrijednostiAtr[1]).ToList();
+                        if (vrijednostiAtr[2] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Kombi)o.VoziloZaProdaju).Mjenjac == vrijednostiAtr[2]).ToList();
+                        break;
+
+                    case "Kamion":
+                        if (vrijednostiAtr[0] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Kamion)o.VoziloZaProdaju).TipKamiona.Contains(vrijednostiAtr[0])).ToList();
+                        if (vrijednostiAtr[1] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Kamion)o.VoziloZaProdaju).Motor == vrijednostiAtr[1]).ToList();
+                        if (vrijednostiAtr[2] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Kamion)o.VoziloZaProdaju).MaksimalnaNosivost <= double.Parse(vrijednostiAtr[2])).ToList();
+                        break;
+
+                    case "Traktor":
+                        if (vrijednostiAtr[0] != "") listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => ((Traktor)o.VoziloZaProdaju).RadniSati <= double.Parse(vrijednostiAtr[0])).ToList();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
 
             //Ispisivanje oglasa u DataGridView
             dgvPrikazOglasa.Rows.Clear();
