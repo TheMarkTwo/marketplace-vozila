@@ -5,8 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MarketplaceVozila.Model;
 
@@ -28,7 +26,7 @@ namespace MarketplaceVozila
         /// <summary>
         /// Cisti sva popunjena polja za pretragu glavne forme, cisti DataGridView za oglase
         /// </summary>
-        public void OcistiPretragu()
+        void OcistiPretragu()
         {
             cmbKategorija.SelectedIndex = -1;
             cmbLokacija.SelectedIndex = -1;
@@ -44,7 +42,7 @@ namespace MarketplaceVozila
         /// <summary>
         /// Odjavljuje korisnika iz profila i vraca ga na formu prijave
         /// </summary>
-        public void Odjava()
+        void Odjava()
         {
             List<Form> otvoreneForme = new List<Form>();
             foreach (Form frm in Application.OpenForms)
@@ -60,6 +58,38 @@ namespace MarketplaceVozila
             this.Hide();
             pri.ShowDialog();
             this.Close();
+        }
+
+        void PretragaOdDo<T>(TextBox txtOd, TextBox txtDo, Func<Oglas, T> propZaUsporedbu) where T: IComparable<T>
+        {
+            T vrjOd = default;
+            T vrjDo = default;
+
+            switch (Type.GetTypeCode(typeof(T)))
+            {
+                case TypeCode.Double:
+                    vrjDo = (T)(dynamic)double.MaxValue;
+                    break;
+                case TypeCode.Int32:
+                    vrjDo = (T)(dynamic)int.MaxValue;
+                    break;
+            }
+
+            if (txtOd.Text != "" || txtDo.Text != "")
+            {
+                try
+                {
+                    if (txtOd.Text != "") vrjOd = (T)Convert.ChangeType(txtOd.Text, typeof(T));
+                    if (txtDo.Text != "") vrjDo = (T)Convert.ChangeType(txtDo.Text, typeof(T));
+
+                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => vrjOd.CompareTo(propZaUsporedbu(o)) <= 0 && propZaUsporedbu(o).CompareTo(vrjDo) <= 0).ToList();
+                }
+                catch (Exception)
+                {
+                    txtOd.Text = "";
+                    txtDo.Text = "";
+                }
+            }
         }
 
         //
@@ -118,9 +148,6 @@ namespace MarketplaceVozila
         // Filtriranje po unesenim podacima
         private void btn_Pretraga_Click(object sender, EventArgs e)
         {
-            bool validno;
-            int intOd = 0; int intDo = 9999;
-            double doubleOd = 0; double doubleDo = 99999999;
             string kategorija = cmbKategorija.GetItemText(cmbKategorija.SelectedItem);
 
             if (kategorija != "")
@@ -132,49 +159,10 @@ namespace MarketplaceVozila
 
             if (kategorija != "")
             {
-                if (txtSnagaMotoraOd.Text != "" || txtSnagaMotoraDo.Text != "")
-                {
-                    if (txtSnagaMotoraOd.Text != "")
-                        validno = int.TryParse(txtSnagaMotoraOd.Text, out intOd);
-                    if (txtSnagaMotoraDo.Text != "")
-                        validno = int.TryParse(txtSnagaMotoraDo.Text, out intDo);
-
-                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => intOd <= o.VoziloZaProdaju.SnagaMotora && o.VoziloZaProdaju.SnagaMotora <= intDo).ToList();
-                    intOd = 0; intDo = 9999;
-                }
-
-                if (txtGodinaPorizvodnjeOd.Text != "" || txtGodinaPorizvodnjeDo.Text != "")
-                {
-                    if (txtGodinaPorizvodnjeOd.Text != "")
-                        validno = int.TryParse(txtGodinaPorizvodnjeOd.Text, out intOd);
-                    if (txtGodinaPorizvodnjeDo.Text != "")
-                        validno = int.TryParse(txtGodinaPorizvodnjeDo.Text, out intDo);
-
-                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => intOd <= o.VoziloZaProdaju.GodinaProizvodnje && o.VoziloZaProdaju.GodinaProizvodnje <= intDo).ToList();
-                    intOd = 0; intDo = 9999;
-                }
-
-                if (txtPrijedeniKilometriOd.Text != "" || txtPrijedeniKilometriDo.Text != "")
-                {
-                    if (txtPrijedeniKilometriOd.Text != "")
-                        validno = double.TryParse(txtPrijedeniKilometriOd.Text, out doubleOd);
-                    if (txtPrijedeniKilometriDo.Text != "")
-                        validno = double.TryParse(txtPrijedeniKilometriDo.Text, out doubleDo);
-
-                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => doubleOd <= o.VoziloZaProdaju.PrijedeniKilometri && o.VoziloZaProdaju.PrijedeniKilometri <= doubleDo).ToList();
-                    doubleOd = 0; doubleDo = 9999999;
-                }
-
-                if (txtCijenaOd.Text != "" || txtCijenaDo.Text != "")
-                {
-                    if (txtCijenaOd.Text != "")
-                        validno = double.TryParse(txtCijenaOd.Text, out doubleOd);
-                    if (txtCijenaDo.Text != "")
-                        validno = double.TryParse(txtCijenaDo.Text, out doubleDo);
-
-                    listaPretrazenihOglasa = listaPretrazenihOglasa.Where(o => doubleOd <= o.Cijena && o.Cijena <= doubleDo).ToList();
-                    doubleOd = 0; doubleDo = 9999999;
-                }
+                PretragaOdDo(txtSnagaMotoraOd, txtSnagaMotoraDo, o => o.VoziloZaProdaju.SnagaMotora);
+                PretragaOdDo(txtGodinaPorizvodnjeOd, txtGodinaPorizvodnjeDo, o => o.VoziloZaProdaju.GodinaProizvodnje);
+                PretragaOdDo(txtPrijedeniKilometriOd, txtPrijedeniKilometriDo, o => o.VoziloZaProdaju.PrijedeniKilometri);
+                PretragaOdDo(txtCijenaOd, txtCijenaDo, o => o.Cijena);
             }
 
             if (cmbLokacija.GetItemText(cmbLokacija.SelectedItem) != "")
@@ -220,7 +208,6 @@ namespace MarketplaceVozila
             {
                 throw;
             }
-
 
             //Ispisivanje oglasa u DataGridView
             dgvPrikazOglasa.Rows.Clear();
