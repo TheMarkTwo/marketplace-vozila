@@ -37,6 +37,7 @@ namespace MarketplaceVozila
             this.btnPrijava = new System.Windows.Forms.Button();
             this.btnRegistracija = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnGost = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,12 +112,28 @@ namespace MarketplaceVozila
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnGost
+            // 
+            this.btnGost.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGost.FlatAppearance.BorderSize = 0;
+            this.btnGost.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGost.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGost.Location = new System.Drawing.Point(77, 271);
+            this.btnGost.Margin = new System.Windows.Forms.Padding(0);
+            this.btnGost.Name = "btnGost";
+            this.btnGost.Size = new System.Drawing.Size(109, 25);
+            this.btnGost.TabIndex = 7;
+            this.btnGost.Text = "Nastavi kao gost";
+            this.btnGost.UseVisualStyleBackColor = true;
+            this.btnGost.Click += new System.EventHandler(this.btnGost_Click);
+            // 
             // frmPrijava
             // 
             this.AcceptButton = this.btnPrijava;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(259, 279);
+            this.ClientSize = new System.Drawing.Size(259, 302);
+            this.Controls.Add(this.btnGost);
             this.Controls.Add(this.btnRegistracija);
             this.Controls.Add(this.btnPrijava);
             this.Controls.Add(this.lblLozinka);
@@ -147,5 +164,6 @@ namespace MarketplaceVozila
         private System.Windows.Forms.Label lblLozinka;
         private System.Windows.Forms.Button btnPrijava;
         private System.Windows.Forms.Button btnRegistracija;
+        private System.Windows.Forms.Button btnGost;
     }
 }

@@ -101,6 +101,12 @@ namespace MarketplaceVozila
             cmbSortiranje.DataSource = PodatkovniKontekst.sortiranjePo;
             lblKorisnickoIme.Text = trenutniKorisnik.KorisnickoIme;
             OcistiPretragu();
+
+            if (trenutniKorisnik.KorisnickoIme == "Gost")
+            {
+                lblKorisnickoIme.Enabled = false;
+                btnKreirajOglas.Enabled = false;
+            }
         }
 
         // Azuriranje popisa marka, ovisno o odabranoj kategoriji vozila
