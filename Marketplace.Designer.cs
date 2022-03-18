@@ -79,9 +79,11 @@ namespace MarketplaceVozila
             this.btnKreirajOglas = new System.Windows.Forms.Button();
             this.btnOcistiPretragu = new System.Windows.Forms.Button();
             this.pnlBG = new System.Windows.Forms.Panel();
+            this.pnlOdDo = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikazOglasa)).BeginInit();
             this.pnlOpcije.SuspendLayout();
             this.pnlBG.SuspendLayout();
+            this.pnlOdDo.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPrikazOglasa
@@ -213,7 +215,7 @@ namespace MarketplaceVozila
             // 
             this.txtSnagaMotoraOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSnagaMotoraOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtSnagaMotoraOd.Location = new System.Drawing.Point(53, 178);
+            this.txtSnagaMotoraOd.Location = new System.Drawing.Point(33, 27);
             this.txtSnagaMotoraOd.Name = "txtSnagaMotoraOd";
             this.txtSnagaMotoraOd.Size = new System.Drawing.Size(65, 22);
             this.txtSnagaMotoraOd.TabIndex = 9;
@@ -267,7 +269,7 @@ namespace MarketplaceVozila
             this.lblSnagaMotora.AutoSize = true;
             this.lblSnagaMotora.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSnagaMotora.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSnagaMotora.Location = new System.Drawing.Point(21, 158);
+            this.lblSnagaMotora.Location = new System.Drawing.Point(1, 7);
             this.lblSnagaMotora.Name = "lblSnagaMotora";
             this.lblSnagaMotora.Size = new System.Drawing.Size(124, 16);
             this.lblSnagaMotora.TabIndex = 7;
@@ -300,7 +302,7 @@ namespace MarketplaceVozila
             this.lblOd.AutoSize = true;
             this.lblOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblOd.Location = new System.Drawing.Point(22, 181);
+            this.lblOd.Location = new System.Drawing.Point(2, 30);
             this.lblOd.Name = "lblOd";
             this.lblOd.Size = new System.Drawing.Size(29, 16);
             this.lblOd.TabIndex = 8;
@@ -311,7 +313,7 @@ namespace MarketplaceVozila
             this.lblDo.AutoSize = true;
             this.lblDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDo.Location = new System.Drawing.Point(123, 181);
+            this.lblDo.Location = new System.Drawing.Point(103, 30);
             this.lblDo.Name = "lblDo";
             this.lblDo.Size = new System.Drawing.Size(29, 16);
             this.lblDo.TabIndex = 10;
@@ -321,7 +323,7 @@ namespace MarketplaceVozila
             // 
             this.txtSnagaMotoraDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSnagaMotoraDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtSnagaMotoraDo.Location = new System.Drawing.Point(153, 178);
+            this.txtSnagaMotoraDo.Location = new System.Drawing.Point(133, 27);
             this.txtSnagaMotoraDo.Name = "txtSnagaMotoraDo";
             this.txtSnagaMotoraDo.Size = new System.Drawing.Size(65, 22);
             this.txtSnagaMotoraDo.TabIndex = 11;
@@ -331,7 +333,7 @@ namespace MarketplaceVozila
             this.lblDo1.AutoSize = true;
             this.lblDo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDo1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDo1.Location = new System.Drawing.Point(123, 232);
+            this.lblDo1.Location = new System.Drawing.Point(103, 81);
             this.lblDo1.Name = "lblDo1";
             this.lblDo1.Size = new System.Drawing.Size(29, 16);
             this.lblDo1.TabIndex = 15;
@@ -341,7 +343,7 @@ namespace MarketplaceVozila
             // 
             this.txtGodinaPorizvodnjeDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGodinaPorizvodnjeDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtGodinaPorizvodnjeDo.Location = new System.Drawing.Point(153, 229);
+            this.txtGodinaPorizvodnjeDo.Location = new System.Drawing.Point(133, 78);
             this.txtGodinaPorizvodnjeDo.Name = "txtGodinaPorizvodnjeDo";
             this.txtGodinaPorizvodnjeDo.Size = new System.Drawing.Size(65, 22);
             this.txtGodinaPorizvodnjeDo.TabIndex = 16;
@@ -351,7 +353,7 @@ namespace MarketplaceVozila
             this.lblOd1.AutoSize = true;
             this.lblOd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOd1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblOd1.Location = new System.Drawing.Point(22, 232);
+            this.lblOd1.Location = new System.Drawing.Point(2, 81);
             this.lblOd1.Name = "lblOd1";
             this.lblOd1.Size = new System.Drawing.Size(29, 16);
             this.lblOd1.TabIndex = 13;
@@ -362,7 +364,7 @@ namespace MarketplaceVozila
             this.lblGodinaProizvodnje.AutoSize = true;
             this.lblGodinaProizvodnje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGodinaProizvodnje.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblGodinaProizvodnje.Location = new System.Drawing.Point(20, 210);
+            this.lblGodinaProizvodnje.Location = new System.Drawing.Point(0, 59);
             this.lblGodinaProizvodnje.Name = "lblGodinaProizvodnje";
             this.lblGodinaProizvodnje.Size = new System.Drawing.Size(125, 16);
             this.lblGodinaProizvodnje.TabIndex = 12;
@@ -372,7 +374,7 @@ namespace MarketplaceVozila
             // 
             this.txtGodinaPorizvodnjeOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGodinaPorizvodnjeOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtGodinaPorizvodnjeOd.Location = new System.Drawing.Point(53, 229);
+            this.txtGodinaPorizvodnjeOd.Location = new System.Drawing.Point(33, 78);
             this.txtGodinaPorizvodnjeOd.Name = "txtGodinaPorizvodnjeOd";
             this.txtGodinaPorizvodnjeOd.Size = new System.Drawing.Size(65, 22);
             this.txtGodinaPorizvodnjeOd.TabIndex = 14;
@@ -382,7 +384,7 @@ namespace MarketplaceVozila
             this.lblDo2.AutoSize = true;
             this.lblDo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDo2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDo2.Location = new System.Drawing.Point(123, 284);
+            this.lblDo2.Location = new System.Drawing.Point(103, 133);
             this.lblDo2.Name = "lblDo2";
             this.lblDo2.Size = new System.Drawing.Size(29, 16);
             this.lblDo2.TabIndex = 20;
@@ -392,7 +394,7 @@ namespace MarketplaceVozila
             // 
             this.txtPrijedeniKilometriDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrijedeniKilometriDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtPrijedeniKilometriDo.Location = new System.Drawing.Point(153, 281);
+            this.txtPrijedeniKilometriDo.Location = new System.Drawing.Point(133, 130);
             this.txtPrijedeniKilometriDo.Name = "txtPrijedeniKilometriDo";
             this.txtPrijedeniKilometriDo.Size = new System.Drawing.Size(65, 22);
             this.txtPrijedeniKilometriDo.TabIndex = 21;
@@ -402,7 +404,7 @@ namespace MarketplaceVozila
             this.lblOd2.AutoSize = true;
             this.lblOd2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOd2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblOd2.Location = new System.Drawing.Point(22, 284);
+            this.lblOd2.Location = new System.Drawing.Point(2, 133);
             this.lblOd2.Name = "lblOd2";
             this.lblOd2.Size = new System.Drawing.Size(29, 16);
             this.lblOd2.TabIndex = 18;
@@ -413,7 +415,7 @@ namespace MarketplaceVozila
             this.lblPrijedeniKilometri.AutoSize = true;
             this.lblPrijedeniKilometri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrijedeniKilometri.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPrijedeniKilometri.Location = new System.Drawing.Point(20, 262);
+            this.lblPrijedeniKilometri.Location = new System.Drawing.Point(0, 111);
             this.lblPrijedeniKilometri.Name = "lblPrijedeniKilometri";
             this.lblPrijedeniKilometri.Size = new System.Drawing.Size(115, 16);
             this.lblPrijedeniKilometri.TabIndex = 17;
@@ -423,7 +425,7 @@ namespace MarketplaceVozila
             // 
             this.txtPrijedeniKilometriOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrijedeniKilometriOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtPrijedeniKilometriOd.Location = new System.Drawing.Point(53, 281);
+            this.txtPrijedeniKilometriOd.Location = new System.Drawing.Point(33, 130);
             this.txtPrijedeniKilometriOd.Name = "txtPrijedeniKilometriOd";
             this.txtPrijedeniKilometriOd.Size = new System.Drawing.Size(65, 22);
             this.txtPrijedeniKilometriOd.TabIndex = 19;
@@ -433,7 +435,7 @@ namespace MarketplaceVozila
             this.lblDo3.AutoSize = true;
             this.lblDo3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDo3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDo3.Location = new System.Drawing.Point(123, 335);
+            this.lblDo3.Location = new System.Drawing.Point(103, 184);
             this.lblDo3.Name = "lblDo3";
             this.lblDo3.Size = new System.Drawing.Size(29, 16);
             this.lblDo3.TabIndex = 25;
@@ -443,7 +445,7 @@ namespace MarketplaceVozila
             // 
             this.txtCijenaDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCijenaDo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtCijenaDo.Location = new System.Drawing.Point(153, 332);
+            this.txtCijenaDo.Location = new System.Drawing.Point(133, 181);
             this.txtCijenaDo.Name = "txtCijenaDo";
             this.txtCijenaDo.Size = new System.Drawing.Size(65, 22);
             this.txtCijenaDo.TabIndex = 26;
@@ -453,7 +455,7 @@ namespace MarketplaceVozila
             this.lblOd3.AutoSize = true;
             this.lblOd3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOd3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblOd3.Location = new System.Drawing.Point(22, 335);
+            this.lblOd3.Location = new System.Drawing.Point(2, 184);
             this.lblOd3.Name = "lblOd3";
             this.lblOd3.Size = new System.Drawing.Size(29, 16);
             this.lblOd3.TabIndex = 23;
@@ -464,7 +466,7 @@ namespace MarketplaceVozila
             this.lblCijena.AutoSize = true;
             this.lblCijena.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCijena.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblCijena.Location = new System.Drawing.Point(20, 313);
+            this.lblCijena.Location = new System.Drawing.Point(0, 162);
             this.lblCijena.Name = "lblCijena";
             this.lblCijena.Size = new System.Drawing.Size(46, 16);
             this.lblCijena.TabIndex = 22;
@@ -474,7 +476,7 @@ namespace MarketplaceVozila
             // 
             this.txtCijenaOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCijenaOd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtCijenaOd.Location = new System.Drawing.Point(53, 332);
+            this.txtCijenaOd.Location = new System.Drawing.Point(33, 181);
             this.txtCijenaOd.Name = "txtCijenaOd";
             this.txtCijenaOd.Size = new System.Drawing.Size(65, 22);
             this.txtCijenaOd.TabIndex = 24;
@@ -590,41 +592,49 @@ namespace MarketplaceVozila
             // 
             // pnlBG
             // 
+            this.pnlBG.Controls.Add(this.pnlOdDo);
             this.pnlBG.Controls.Add(this.lblKategorija);
             this.pnlBG.Controls.Add(this.btnOcistiPretragu);
             this.pnlBG.Controls.Add(this.cmbMarka);
-            this.pnlBG.Controls.Add(this.txtSnagaMotoraOd);
             this.pnlBG.Controls.Add(this.lblLokacija);
             this.pnlBG.Controls.Add(this.lblMarka);
             this.pnlBG.Controls.Add(this.cmbLokacija);
             this.pnlBG.Controls.Add(this.cmbModel);
-            this.pnlBG.Controls.Add(this.lblDo3);
             this.pnlBG.Controls.Add(this.lblModel);
-            this.pnlBG.Controls.Add(this.txtCijenaDo);
-            this.pnlBG.Controls.Add(this.lblSnagaMotora);
-            this.pnlBG.Controls.Add(this.lblOd3);
             this.pnlBG.Controls.Add(this.cmbKategorija);
-            this.pnlBG.Controls.Add(this.lblCijena);
             this.pnlBG.Controls.Add(this.pnlAtributi);
-            this.pnlBG.Controls.Add(this.txtCijenaOd);
             this.pnlBG.Controls.Add(this.btn_Pretraga);
-            this.pnlBG.Controls.Add(this.lblDo2);
-            this.pnlBG.Controls.Add(this.lblOd);
-            this.pnlBG.Controls.Add(this.txtPrijedeniKilometriDo);
-            this.pnlBG.Controls.Add(this.txtSnagaMotoraDo);
-            this.pnlBG.Controls.Add(this.lblOd2);
-            this.pnlBG.Controls.Add(this.lblDo);
-            this.pnlBG.Controls.Add(this.lblPrijedeniKilometri);
-            this.pnlBG.Controls.Add(this.txtGodinaPorizvodnjeOd);
-            this.pnlBG.Controls.Add(this.txtPrijedeniKilometriOd);
-            this.pnlBG.Controls.Add(this.lblGodinaProizvodnje);
-            this.pnlBG.Controls.Add(this.lblDo1);
-            this.pnlBG.Controls.Add(this.lblOd1);
-            this.pnlBG.Controls.Add(this.txtGodinaPorizvodnjeDo);
             this.pnlBG.Location = new System.Drawing.Point(-1, 0);
             this.pnlBG.Name = "pnlBG";
             this.pnlBG.Size = new System.Drawing.Size(246, 717);
             this.pnlBG.TabIndex = 33;
+            // 
+            // pnlOdDo
+            // 
+            this.pnlOdDo.Controls.Add(this.txtCijenaOd);
+            this.pnlOdDo.Controls.Add(this.txtGodinaPorizvodnjeDo);
+            this.pnlOdDo.Controls.Add(this.lblOd1);
+            this.pnlOdDo.Controls.Add(this.txtSnagaMotoraOd);
+            this.pnlOdDo.Controls.Add(this.lblDo1);
+            this.pnlOdDo.Controls.Add(this.lblGodinaProizvodnje);
+            this.pnlOdDo.Controls.Add(this.txtPrijedeniKilometriOd);
+            this.pnlOdDo.Controls.Add(this.txtGodinaPorizvodnjeOd);
+            this.pnlOdDo.Controls.Add(this.lblPrijedeniKilometri);
+            this.pnlOdDo.Controls.Add(this.lblDo3);
+            this.pnlOdDo.Controls.Add(this.lblDo);
+            this.pnlOdDo.Controls.Add(this.lblOd2);
+            this.pnlOdDo.Controls.Add(this.txtCijenaDo);
+            this.pnlOdDo.Controls.Add(this.txtSnagaMotoraDo);
+            this.pnlOdDo.Controls.Add(this.lblSnagaMotora);
+            this.pnlOdDo.Controls.Add(this.txtPrijedeniKilometriDo);
+            this.pnlOdDo.Controls.Add(this.lblOd3);
+            this.pnlOdDo.Controls.Add(this.lblOd);
+            this.pnlOdDo.Controls.Add(this.lblDo2);
+            this.pnlOdDo.Controls.Add(this.lblCijena);
+            this.pnlOdDo.Location = new System.Drawing.Point(21, 152);
+            this.pnlOdDo.Name = "pnlOdDo";
+            this.pnlOdDo.Size = new System.Drawing.Size(200, 203);
+            this.pnlOdDo.TabIndex = 47;
             // 
             // frmMarketplace
             // 
@@ -648,6 +658,8 @@ namespace MarketplaceVozila
             this.pnlOpcije.PerformLayout();
             this.pnlBG.ResumeLayout(false);
             this.pnlBG.PerformLayout();
+            this.pnlOdDo.ResumeLayout(false);
+            this.pnlOdDo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -699,6 +711,7 @@ namespace MarketplaceVozila
         private System.Windows.Forms.DataGridViewTextBoxColumn Cijena;
         private System.Windows.Forms.DataGridViewTextBoxColumn Kilometraza;
         private System.Windows.Forms.DataGridViewTextBoxColumn RawCijena;
+        private System.Windows.Forms.Panel pnlOdDo;
     }
 }
 

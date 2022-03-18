@@ -43,38 +43,38 @@ namespace MarketplaceVozila
             // 
             // txtKorisnickoIme
             // 
-            this.txtKorisnickoIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKorisnickoIme.Location = new System.Drawing.Point(125, 116);
+            this.txtKorisnickoIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKorisnickoIme.Location = new System.Drawing.Point(133, 116);
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
-            this.txtKorisnickoIme.Size = new System.Drawing.Size(100, 22);
+            this.txtKorisnickoIme.Size = new System.Drawing.Size(100, 24);
             this.txtKorisnickoIme.TabIndex = 1;
             // 
             // txtLozinka
             // 
-            this.txtLozinka.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLozinka.Location = new System.Drawing.Point(125, 154);
+            this.txtLozinka.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLozinka.Location = new System.Drawing.Point(133, 154);
             this.txtLozinka.Name = "txtLozinka";
             this.txtLozinka.PasswordChar = '*';
-            this.txtLozinka.Size = new System.Drawing.Size(100, 22);
+            this.txtLozinka.Size = new System.Drawing.Size(100, 24);
             this.txtLozinka.TabIndex = 2;
             // 
             // lblKorisnickoIme
             // 
             this.lblKorisnickoIme.AutoSize = true;
-            this.lblKorisnickoIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKorisnickoIme.Location = new System.Drawing.Point(25, 119);
+            this.lblKorisnickoIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKorisnickoIme.Location = new System.Drawing.Point(16, 119);
             this.lblKorisnickoIme.Name = "lblKorisnickoIme";
-            this.lblKorisnickoIme.Size = new System.Drawing.Size(98, 16);
+            this.lblKorisnickoIme.Size = new System.Drawing.Size(111, 18);
             this.lblKorisnickoIme.TabIndex = 3;
             this.lblKorisnickoIme.Text = "Korisnicko ime:";
             // 
             // lblLozinka
             // 
             this.lblLozinka.AutoSize = true;
-            this.lblLozinka.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLozinka.Location = new System.Drawing.Point(66, 157);
+            this.lblLozinka.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLozinka.Location = new System.Drawing.Point(63, 157);
             this.lblLozinka.Name = "lblLozinka";
-            this.lblLozinka.Size = new System.Drawing.Size(57, 16);
+            this.lblLozinka.Size = new System.Drawing.Size(64, 18);
             this.lblLozinka.TabIndex = 4;
             this.lblLozinka.Text = "Lozinka:";
             // 

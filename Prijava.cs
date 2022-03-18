@@ -46,7 +46,7 @@ namespace MarketplaceVozila
 
         private void btnGost_Click(object sender, EventArgs e)
         {
-            frmMarketplace mp = new frmMarketplace(new Korisnik { KorisnickoIme = "Gost"} );
+            frmMarketplace mp = new frmMarketplace(new Korisnik { ID = -1, KorisnickoIme = "Gost"} );
             this.Hide();
             mp.ShowDialog();
             this.Close();

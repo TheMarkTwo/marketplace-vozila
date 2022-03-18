@@ -28,12 +28,15 @@ namespace MarketplaceVozila
         /// </summary>
         void OcistiPretragu()
         {
+            foreach (Control c in pnlOdDo.Controls)
+            {
+                if (c is TextBox)
+                    c.Text = "";
+            }
             cmbKategorija.SelectedIndex = -1;
             cmbLokacija.SelectedIndex = -1;
             cmbSortiranje.SelectedIndex = -1;
-            cmbMarka.Enabled = false;
             cmbMarka.SelectedIndex = -1;
-            cmbModel.Enabled = false;
             cmbModel.SelectedIndex = -1;
             pnlAtributi.Controls.Clear();
             dgvPrikazOglasa.Rows.Clear();
@@ -44,11 +47,7 @@ namespace MarketplaceVozila
         /// </summary>
         void Odjava()
         {
-            List<Form> otvoreneForme = new List<Form>();
             foreach (Form frm in Application.OpenForms)
-                otvoreneForme.Add(frm);
-
-            foreach (Form frm in otvoreneForme)
             {
                 if (frm.Name != "frmPrijava")
                     frm.Close();
