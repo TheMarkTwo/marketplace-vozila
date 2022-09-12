@@ -18,20 +18,23 @@ namespace MarketplaceVozila
         Image img;
 
         List<Oglas> korisniceviOglasi = new List<Oglas>();
+        //TU JE PROBLEM
         readonly Korisnik trenutniKorisnik;
+        readonly Korisnik profilKorisnik;
         readonly bool _vlastitiProfil;
 
-        public frmProfil(Korisnik korisnik, bool vlastitiProfil)
+        public frmProfil(Korisnik tKorisnik, Korisnik korisnik, bool vlastitiProfil)
         {
             _vlastitiProfil = vlastitiProfil;
-            trenutniKorisnik = korisnik;
+            trenutniKorisnik = tKorisnik;
+            profilKorisnik = korisnik;
             InitializeComponent();
         }
 
         public void AzurirajDGV()
         {
             dgvPrikazOglasa.Rows.Clear();
-            korisniceviOglasi = Oglas.listaOglasa.Where(oglas => oglas.Prodavac.ID == trenutniKorisnik.ID).ToList();
+            korisniceviOglasi = Oglas.listaOglasa.Where(oglas => oglas.Prodavac.ID == profilKorisnik.ID).ToList();
             if (korisniceviOglasi.Count != 0)
             {
                 foreach (Oglas oglas in korisniceviOglasi)
@@ -48,21 +51,21 @@ namespace MarketplaceVozila
         private void Profil_Load(object sender, EventArgs e)
         {
             //popunjavanje polja korisnickim podatcima
-            this.Text = trenutniKorisnik.KorisnickoIme;
+            this.Text = profilKorisnik.KorisnickoIme;
 
-            if (trenutniKorisnik.Slika == "" || trenutniKorisnik.Slika == null) imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempProfilna);
-            else imgBytes = Convert.FromBase64String(trenutniKorisnik.Slika);
+            if (profilKorisnik.Slika == "" || profilKorisnik.Slika == null) imgBytes = Convert.FromBase64String(PodatkovniKontekst.tempProfilna);
+            else imgBytes = Convert.FromBase64String(profilKorisnik.Slika);
             using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
             pboxProfilna.Image = img;
 
             if (!_vlastitiProfil)
                 pboxProfilna.Cursor = Cursors.Default;
 
-            lblKorisnickoIme.Text = trenutniKorisnik.KorisnickoIme;
-            lblPunoIme.Text = trenutniKorisnik.PunoIme;
-            lblAdresa.Text = trenutniKorisnik.Adresa;
-            lblTelefon.Text = trenutniKorisnik.Broj;
-            lblEmail.Text = trenutniKorisnik.Email;
+            lblKorisnickoIme.Text = profilKorisnik.KorisnickoIme;
+            lblPunoIme.Text = profilKorisnik.PunoIme;
+            lblAdresa.Text = profilKorisnik.Adresa;
+            lblTelefon.Text = profilKorisnik.Broj;
+            lblEmail.Text = profilKorisnik.Email;
 
             //kontroliranje opcijama vezane za vlastiti profil i oglase
             if (!_vlastitiProfil)
@@ -85,7 +88,7 @@ namespace MarketplaceVozila
                 string base64Img = PodatkovniKontekst.GetImageBase64();
                 if (base64Img != "")
                 {
-                    trenutniKorisnik.Slika = base64Img;
+                    profilKorisnik.Slika = base64Img;
                     imgBytes = Convert.FromBase64String(base64Img);
                     using (MemoryStream ms = new MemoryStream(imgBytes)) img = Image.FromStream(ms);
                     pboxProfilna.Image = img;
@@ -113,7 +116,7 @@ namespace MarketplaceVozila
 
         private void btnUrediKRacun_Click(object sender, EventArgs e)
         {
-            UrediRacun urra = new UrediRacun(trenutniKorisnik);
+            UrediRacun urra = new UrediRacun(profilKorisnik);
             urra.ShowDialog();
         }
 

@@ -277,7 +277,7 @@ namespace MarketplaceVozila
 
         private void lblKorisnickoIme_Click(object sender, EventArgs e)
         {
-            frmProfil pro = new frmProfil(trenutniKorisnik, true);
+            frmProfil pro = new frmProfil(trenutniKorisnik, trenutniKorisnik, true);
             pro.ShowDialog();
             if (pro.izbrisanOglas) dgvPrikazOglasa.Rows.Clear();
             if (pro.izbrisanProfil)

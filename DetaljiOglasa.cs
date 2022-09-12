@@ -84,7 +84,7 @@ namespace MarketplaceVozila
             else
                 vlastitiOglas = false;
 
-            frmProfil prof = new frmProfil(trenutniOglas.Prodavac, vlastitiOglas);
+            frmProfil prof = new frmProfil(trenutniKorisnik, trenutniOglas.Prodavac, vlastitiOglas);
             prof.Show();
         }
     }
