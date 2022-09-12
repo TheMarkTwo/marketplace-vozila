@@ -11,4 +11,3 @@ Motocikl|39|Suzuki|BANDIT 600cc GSF/S|57|0.6|2004|39000|Cestovni|Cetverotaktni
 Kombi|40|Renault|Master|107|2.3|2012|517000|2.0dCi|Dizel|Manualni
 Kamion|41|Renault|T480|360|13|2022|50|T480 13L 2022|Dizel|7.5
 Traktor|42|John Deere|6520|86|6.8|2003|0|8673
-Automobil|43|Toyota|Celica|115|2|1996|360000|2.0 sti|Benzin|Manualni
