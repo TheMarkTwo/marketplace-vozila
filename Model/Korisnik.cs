@@ -38,11 +38,11 @@ namespace MarketplaceVozila.Model
 
         public static void DohvatiKorisike()
         {
+            Korisnik korisnik;
+            string line;
+            string[] devided;
             using (StreamReader reader = new StreamReader(PodatkovniKontekst.bazaKorisnika))
             {
-                Korisnik korisnik;
-                string line;
-                string[] devided;
                 while ((line = reader.ReadLine()) != null)
                 {
                     devided = line.Split('|');
