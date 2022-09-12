@@ -118,7 +118,7 @@ namespace MarketplaceVozila
             cmbMarka.Items.Clear();
             foreach (Vozilo v in Vozilo.listaVozila)
             {
-                if (odabranaKategorija == v.GetType().Name) 
+                if (odabranaKategorija == v.Kategorija) 
                     listaMarki.Add(v.Marka);
             }
             listaMarki = listaMarki.Distinct().ToList();
