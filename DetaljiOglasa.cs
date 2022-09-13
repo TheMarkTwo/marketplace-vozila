@@ -14,7 +14,7 @@ namespace MarketplaceVozila
 {
     public partial class frmDetaljiOglasa : Form
     {
-        readonly Oglas trenutniOglas;
+        readonly Oglas trenutniOglas; 
         readonly Korisnik trenutniKorisnik;
         public frmDetaljiOglasa(Oglas oglas, Korisnik korisnik)
         {
